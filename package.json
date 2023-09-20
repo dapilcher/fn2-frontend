@@ -7,6 +7,7 @@
     "dev": "next dev -p 7777",
     "build": "next build",
     "start": "next start -p 7777",
+    "test": "echo 'nothing to test'",
     "lint": "next lint"
   },
   "author": "",
