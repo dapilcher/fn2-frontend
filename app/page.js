@@ -1,7 +1,7 @@
 const Home = () => {
   return <div>
     <p>
-      This is where the posts will be listed
+      Nothing yet 🤷‍♂️
     </p>
   </div>
 }
