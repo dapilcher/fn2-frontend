@@ -3,7 +3,7 @@ const Layout = ({children}) => {
     <html lang="eng">
       <body>
         <header>
-          <h1>Hello World</h1>
+          <h1>Flightless Nerd</h1>
         </header>
       
         {children}
