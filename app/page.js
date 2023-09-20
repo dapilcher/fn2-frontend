@@ -1,7 +1,7 @@
 const Home = () => {
   return <div>
     <p>
-      Nothing yet 🤷‍♂️
+      Nothing here yet 🤷‍♂️
     </p>
   </div>
 }
