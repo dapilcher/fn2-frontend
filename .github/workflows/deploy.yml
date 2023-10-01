@@ -43,6 +43,7 @@ jobs:
           write-mode: overwrite
           contents: |
             FRONTEND_URL="${{ secrets.FRONTEND_URL }}"
+            GRAPHQL_URI="${{ secrets.GRAPHQL_URI }}"
       - name: Deploy via rsync
         uses: burnett01/rsync-deployments@6.0.0
         with:
