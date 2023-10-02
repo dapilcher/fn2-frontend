@@ -3,6 +3,8 @@ import Link from 'next/link';
 // import cld from '../lib/cloudinary';
 import CloudImage from './CloudImage';
 import Button from './Button';
+import TagLink from './TagLink';
+import TagList from './TagList';
 
 // import { CldImage } from "next-cloudinary";
 
@@ -14,7 +16,7 @@ const PostCard = ({post}) => {
   return (
     <li key={post.id} className="flex flex-col items-start">
         {/* <AdvancedImage cldImg={image} /> */}
-        <CloudImage
+        {post.headerImage?.id && <CloudImage
           imageId={post.headerImage.id}
           alt={post.title}
           width="1000"
@@ -24,11 +26,12 @@ const PostCard = ({post}) => {
           sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
-        />
-        <div className="py-4">
+        />}
+        <div className="my-4">
+          {post.tags.length > 0 && <TagList tags={post.tags} />}
           <p className="text-2xl font-display">{post.title}</p>
-          <p className="py-4">By {post.author.name}</p>
-          <p>Some body text about what this post is about. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore blanditiis sequi velit voluptatem quisquam a expedita. Beatae perferendis suscipit libero quidem velit aut error cumque voluptatibus necessitatibus facere? Quam, provident?</p>
+          <p className="my-4">{post.author.name}</p>
+          <p>{post.blurb}</p>
         </div>
         <Link href={`/p/${post.id}`}>
           <Button>Continue Reading</Button>

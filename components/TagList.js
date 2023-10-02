@@ -1,0 +1,14 @@
+import React from 'react';
+import TagLink from './TagLink';
+
+const TagList = ({tags}) => {
+  return (
+    <ul className="flex flex-row gap-2 grid-flow-col-dense mb-2">
+      {tags.map(tag => (
+        <TagLink name={tag.name} id={tag.id} />
+      ))}
+    </ul>
+  );
+};
+
+export default TagList;

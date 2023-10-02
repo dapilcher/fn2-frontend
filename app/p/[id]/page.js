@@ -8,6 +8,7 @@ import CustomRenderer from "../../../components/CustomRenderer";
 import PrettyJSON from "../../../components/PrettyJSON";
 import Image from "next/image";
 import HeaderImage from "../../../components/HeaderImage";
+import TagList from "../../../components/TagList";
 
 const SinglePost = async ({params}) => {
   const {data, loading} = await getClient().query({
@@ -28,22 +29,24 @@ const SinglePost = async ({params}) => {
     <>
       {/* <Hero src={data.post.headerImage.publicUrl} /> */}
       <BodyContainer>
-        <HeaderImage
+        {data.post.headerImage?.id && <HeaderImage
           imageId={data.post.headerImage.id}
           className="max-w-full"
           attribution={data.post.headerImageAttribution}
           attributionUrl={data.post.headerImageAttributionUrl}
           alt={data.post.title}
-        />
+        />}
         <div className="mb-16 mt-8">
           <h1 className="text-2xl md:text-3xl font-display mb-2">{data.post.title}</h1>
-          <h2 className="text-md md:text-md">
-            Published on{' '}
-            {moment(data.post.publishedAt || data.post.createdAt).format("MMMM Do[,] YYYY")}{" "}
-            by <Link href={`/a/${data.post.author.id}`} className="text-primary-600 hover:text-primary-400">
+          <h2 className="text-md md:text-md mb-4">
+            By <Link href={`/a/${data.post.author.id}`} className="text-primary-600 hover:text-primary-400">
               {data.post.author.name}
             </Link>
+            <span className="mx-2">{"|"}</span>
+            Updated on{' '}
+            {moment(data.post.publishedAt || data.post.createdAt).format("MMMM Do[,] YYYY")}
           </h2>
+          <TagList tags={data.post.tags} />
         </div>
         <div className="">
           {data.post.content?.document ?

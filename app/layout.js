@@ -29,7 +29,7 @@ const Layout = ({children}) => {
 
   return (
     <html lang="eng" className={`${displayFont.variable} ${bodyFont.variable}`}>
-      <body className="bg-secondary-50 font-body min-h-screen w-screen flex justify-center">
+      <body className="bg-grey-0 font-body min-h-screen w-screen flex justify-center">
         <BodyContainer>
           <Header />
           <div className="flex flex-col items-center justify-start flex-1">
