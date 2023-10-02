@@ -17,7 +17,12 @@ const Home = async () => {
   if (loading) return <p>Loading...</p>
   return (
     <>
-      <PostList posts={data.posts} />
+      {data.posts.length > 0 ?
+        <PostList posts={data.posts} /> :
+        <BodyContainer>
+          <p>There are no posts published 🤷‍♂️</p>
+        </BodyContainer>
+      }
       {/* <PrettyJSON data={data} className="mt-10"/> */}
     </>
   )

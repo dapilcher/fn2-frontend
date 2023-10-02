@@ -1,0 +1,18 @@
+import Link from 'next/link';
+import React from 'react';
+
+const TagLink = ({id, name}) => {
+  return (
+    <li>
+      <Link href={`/t/${id}`}>
+        <button
+          className="px-2 py-1 font-display text-sm bg-yellow-500 text-grey-700 uppercase"
+          key={id}>
+          {name}
+        </button>
+      </Link>
+    </li>
+  );
+};
+
+export default TagLink;

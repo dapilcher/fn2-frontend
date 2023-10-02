@@ -16,8 +16,8 @@ const Header = () => {
         {/* TODO: HAMBURGER */}
         <div className="hidden md:flex-1 md:flex md:flex-row md:justify-between md:items-center">
           <Nav className="md:flex md:flex-row">
-            <NavItem href="#">About</NavItem>
-            <NavItem href="#">Contact</NavItem>
+            <NavItem href="/about">About</NavItem>
+            <NavItem href="/contact">Contact</NavItem>
           </Nav>
           <Nav className="flex flex-row">
             <NavItem href="#"><Image className="text-grey-700 hover:text-red-500" src="/x.svg" width="16" height="16" /></NavItem>

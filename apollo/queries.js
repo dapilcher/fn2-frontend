@@ -2,7 +2,8 @@ import { gql } from '@apollo/client';
 
 const GET_ALL_POSTS = gql`
   query GET_ALL_POSTS {
-    posts {
+    # posts(where: { status: { equals: "PUBLISHED"} }) {
+    posts(orderBy: [{ createdAt: desc}]) {
       author {
         id
         name
@@ -15,7 +16,11 @@ const GET_ALL_POSTS = gql`
       headerImage {
         id
       }
-      status
+      blurb
+      tags {
+        name
+        id
+      }
     }
   } 
 `;
@@ -26,7 +31,6 @@ const GET_AUTHOR_POSTS = gql`
       id
       name
       posts {
-        updatedAt
         title
         tags {
           name
@@ -36,19 +40,43 @@ const GET_AUTHOR_POSTS = gql`
           id
           name
         }
-        status
-        publishedAt
         id
-        createdAt
-        content {
-          document
-        }
         headerImage {
+          id
+        }
+        blurb
+        tags {
+          name
           id
         }
       }
     }
   }
+`;
+
+const GET_TAG_POSTS = gql`
+  query GET_TAG_POSTS($tagWhere: TagWhereUniqueInput!, $postsWhere: PostWhereInput!) {
+  tag(where: $tagWhere) {
+    id
+    name
+    posts(where: $postsWhere, orderBy: [{ createdAt: desc }]) {
+      tags {
+        id
+        name
+      }
+      author {
+        id
+        name
+      }
+      title
+      headerImage {
+        id
+      }
+      blurb
+      id
+    }
+  }
+}
 `;
 
 const GET_POST_BY_ID = gql`
@@ -81,8 +109,20 @@ const GET_POST_BY_ID = gql`
   }
 `;
 
+const GET_PAGE_BY_NAME = gql`
+  query GET_PAGE_BY_NAME($where: PageWhereUniqueInput!) {
+  page(where: $where) {
+    content {
+      document
+    }
+  }
+}
+`;
+
 export {
   GET_ALL_POSTS,
   GET_AUTHOR_POSTS,
   GET_POST_BY_ID,
+  GET_TAG_POSTS,
+  GET_PAGE_BY_NAME
 }
