@@ -28,35 +28,33 @@ const SinglePost = async ({params}) => {
   return (
     <>
       {/* <Hero src={data.post.headerImage.publicUrl} /> */}
-      <BodyContainer>
-        {data.post.headerImage?.id && <HeaderImage
-          imageId={data.post.headerImage.id}
-          className="max-w-full"
-          attribution={data.post.headerImageAttribution}
-          attributionUrl={data.post.headerImageAttributionUrl}
-          alt={data.post.title}
-        />}
-        <div className="mb-16 mt-8">
-          <h1 className="text-2xl md:text-3xl font-display mb-2">{data.post.title}</h1>
-          <h2 className="text-md md:text-md mb-4">
-            By <Link href={`/a/${data.post.author.id}`} className="text-primary-600 hover:text-primary-400">
-              {data.post.author.name}
-            </Link>
-            <span className="mx-2">{"|"}</span>
-            Updated on{' '}
-            {moment(data.post.publishedAt || data.post.createdAt).format("MMMM Do[,] YYYY")}
-          </h2>
-          <TagList tags={data.post.tags} />
-        </div>
-        <div className="">
-          {data.post.content?.document ?
-            <>
-              <CustomRenderer document={data.post.content.document} />
-              {/* <PrettyJSON data={data.post.content.document} /> */}
-            </> : <p>No content</p>
-          }
-        </div>
-      </BodyContainer>
+      {data.post.headerImage?.id && <HeaderImage
+        imageId={data.post.headerImage.id}
+        className="max-w-full"
+        attribution={data.post.headerImageAttribution}
+        attributionUrl={data.post.headerImageAttributionUrl}
+        alt={data.post.title}
+      />}
+      <div className="mb-16 mt-8 w-full">
+        <h1 className="text-2xl md:text-3xl font-display mb-2">{data.post.title}</h1>
+        <h2 className="text-md md:text-md mb-4">
+          By <Link href={`/a/${data.post.author.id}`} className="text-primary-600 hover:text-primary-400">
+            {data.post.author.name}
+          </Link>
+          <span className="mx-2">{"|"}</span>
+          Updated on{' '}
+          {moment(data.post.publishedAt || data.post.createdAt).format("MMMM Do[,] YYYY")}
+        </h2>
+        <TagList tags={data.post.tags} />
+      </div>
+      <div className="">
+        {data.post.content?.document ?
+          <>
+            <CustomRenderer document={data.post.content.document} />
+            {/* <PrettyJSON data={data.post.content.document} /> */}
+          </> : <p>No content</p>
+        }
+      </div>
     </>
   )
 }
