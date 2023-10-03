@@ -15,8 +15,6 @@ const AboutPage = async () => {
     },
   });
 
-  console.log({data})
-
   if (loading) return <p>Loading...</p>
   return (
     <BodyContainer>

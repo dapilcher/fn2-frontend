@@ -1,34 +1,52 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import Nav from "./Nav";
 import NavItem from "./NavItem";
+import { useState } from "react";
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className="py-5 w-full justify-center">
-      <div className="flex flex-row justify-between items-center max-w-screen">
-        <Link href="/">
-          <h1 className="font-display text-xl md:text-xl flex items-center text-grey-700 hover:text-red-500 uppercase">
+      <nav className="flex flex-wrap justify-between items-center max-w-screen"
+        style={{
+          "& #menu-toggle:checked + #collapsible": {
+              maxHeight: "100%"
+          }
+        }}
+      >
+        <Link href="/" className="flex-shrink-0">
+          <h1 className="font-display text-2xl md:text-xl flex items-center text-grey-700 hover:text-red-500 uppercase">
             {/* <Image src="/Austrich_circle_cropped.png" width="48" height="48" alt="Flightless Nerd logo" className="mr-2"/> Flightless Nerd */}
             Flightless Nerd
           </h1>
         </Link>
         {/* TODO: HAMBURGER */}
-        <div className="hidden md:flex-1 md:flex md:flex-row md:justify-between md:items-center">
+        <div className="block md:hidden">
+          {/* <button class="flex items-center px-2 py-1 border rounded fill-grey-800 border-grey-800 hover:fill-red-500 hover:border-red-500">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+          </button> */}
+          <button onClick={() => setIsMenuOpen(a => !a)} className="flex flex-col justify-center items-center">
+            <div className="w-5 border-b-2 border-b-grey-900" />
+            <div className={`w-5 border-b-2 border-b-grey-900 ${isMenuOpen ? "my-1" : "my-0.5"} transition-all`} />
+            <div className="w-5 border-b-2 border-b-grey-900" />
+          </button>
+        </div>
+        <div className={`w-full block flex-grow ${isMenuOpen ? "max-h-screen" : "max-h-0"} overflow-hidden transition-all md:h-auto md:max-h-full md:flex md:justify-between md:items-center md:w-auto`}>
           <Nav className="md:flex md:flex-row">
             <NavItem href="/about">About</NavItem>
             <NavItem href="/contact">Contact</NavItem>
           </Nav>
-          <Nav className="flex flex-row">
-            <NavItem href="#"><Image className="text-grey-700 hover:text-red-500" src="/x.svg" width="16" height="16" /></NavItem>
-            <NavItem href="#"><Image className="text-grey-700 hover:text-red-500" src="/discord.svg" width="16" height="16" /></NavItem>
-            <NavItem href="#"><Image className="text-grey-700 hover:text-red-500" src="/twitch.svg" width="16" height="16" /></NavItem>
+          <Nav className="flex flex-row mt-2 md:mt-0">
+            <NavItem href="#"><img className="fill-grey-700 hover:fill-red-500 h-5 w-5 md:h-4 md:w-4" src="/x.svg"  /></NavItem>
+            <NavItem href="#"><img className="fill-grey-700 hover:fill-red-500 h-5 w-5 md:h-4 md:w-4" src="/discord.svg"  /></NavItem>
+            <NavItem href="#"><img className="fill-grey-700 hover:fill-red-500 h-5 w-5 md:h-4 md:w-4" src="/twitch.svg"  /></NavItem>
           </Nav>
         </div>
-        <div className="md:hidden">
-          MMM
-        </div>
-      </div>
+      </nav>
     </header>
   );
 };
