@@ -13,7 +13,7 @@ const AuthorPage = async ({params}) => {
   return (
     <BodyContainer>
         <div className="mb-8">
-          <h1 className="text-2xl font-display">{data.user.name}</h1>
+          <h1 className="text-2xl font-display">By {data.user.name}</h1>
         </div>
       <PostList posts={data.user.posts} />
     </BodyContainer>

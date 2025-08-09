@@ -1,11 +1,30 @@
-import React from 'react';
+import { getClient } from '../../apollo/client';
+import { GET_PAGE_BY_NAME } from '../../apollo/queries';
 import BodyContainer from '../../components/BodyContainer';
+import CustomRenderer from '../../components/CustomRenderer';
 
-const ContactPage = () => {
+const ContactPage = async () => {
+  const {data, loading} = await getClient().query({
+    query: GET_PAGE_BY_NAME,
+    variables: { where: { slug: "contact" } },
+    context: {
+      fetchOptions: {
+        next: { revalidate: 10 },
+      },
+    },
+  });
+
+  if (loading) return <p>Loading...</p>
   return (
-    <BodyContainer>
-      <p>This is the Contact page</p>
-    </BodyContainer>
+    <article className="w-full">
+      <h1 className="font-display text-3xl mb-8">Contact</h1>
+      {data.page.content?.document ?
+            <>
+              <CustomRenderer document={data.page.content.document} />
+              {/* <PrettyJSON data={data.post.content.document} /> */}
+            </> : <p>No content</p>
+          }
+    </article>
   );
 };
 

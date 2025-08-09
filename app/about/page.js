@@ -7,7 +7,7 @@ import CustomRenderer from '../../components/CustomRenderer';
 const AboutPage = async () => {
     const {data, loading} = await getClient().query({
     query: GET_PAGE_BY_NAME,
-    variables: { where: { title: "About Us" } },
+    variables: { where: { slug: "about-us" } },
     context: {
       fetchOptions: {
         next: { revalidate: 10 },
@@ -17,7 +17,7 @@ const AboutPage = async () => {
 
   if (loading) return <p>Loading...</p>
   return (
-    <BodyContainer>
+    <article>
       <h1 className="font-display text-3xl mb-8">About Us</h1>
       {data.page.content?.document ?
             <>
@@ -25,7 +25,7 @@ const AboutPage = async () => {
               {/* <PrettyJSON data={data.post.content.document} /> */}
             </> : <p>No content</p>
           }
-    </BodyContainer>
+    </article>
   );
 };
 

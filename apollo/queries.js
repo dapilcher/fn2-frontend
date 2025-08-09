@@ -111,12 +111,12 @@ const GET_POST_BY_ID = gql`
 
 const GET_PAGE_BY_NAME = gql`
   query GET_PAGE_BY_NAME($where: PageWhereUniqueInput!) {
-  page(where: $where) {
-    content {
-      document
+    page(where: $where) {
+      content {
+        document
+      }
     }
   }
-}
 `;
 
 export {
