@@ -34,7 +34,7 @@ const PostCard = ({post}) => {
           <p>{post.blurb}</p>
         </div>
         <Link href={`/p/${post.id}`}>
-          <Button>Continue Reading</Button>
+          <Button>Continue Reading →</Button>
         </Link>
       </li>
   );

@@ -10,6 +10,24 @@ import Image from "next/image";
 import HeaderImage from "../../../components/HeaderImage";
 import TagList from "../../../components/TagList";
 
+
+// Metadata
+export async function generateMetadata ({params}, parent) {
+  const {data} = await getClient().query({
+    query: GET_POST_BY_ID,
+    variables: { where: { id: params.id } },
+    context: {
+      fetchOptions: {
+        next: { revalidate: 5 },
+      },
+    },
+  });
+
+  return {
+    title: data.post.title
+  }
+} 
+
 const SinglePost = async ({params}) => {
   const {data, loading} = await getClient().query({
     query: GET_POST_BY_ID,
@@ -36,25 +54,25 @@ const SinglePost = async ({params}) => {
         alt={data.post.title}
       />}
       <div className="mb-16 mt-8 w-full">
-        <h1 className="text-2xl md:text-3xl font-display mb-2">{data.post.title}</h1>
-        <h2 className="text-md md:text-md mb-4">
+        <h1 className="text-3xl font-display mb-2">{data.post.title}</h1>
+        <p className="text-md md:text-md mb-4">
           By <Link href={`/a/${data.post.author.id}`} className="text-primary-600 hover:text-primary-400">
             {data.post.author.name}
           </Link>
           <span className="mx-2">{"|"}</span>
           Updated on{' '}
           {moment(data.post.publishedAt || data.post.createdAt).format("MMMM Do[,] YYYY")}
-        </h2>
+        </p>
         <TagList tags={data.post.tags} />
       </div>
-      <div className="">
+      <article className="">
         {data.post.content?.document ?
           <>
             <CustomRenderer document={data.post.content.document} />
             {/* <PrettyJSON data={data.post.content.document} /> */}
           </> : <p>No content</p>
         }
-      </div>
+      </article>
     </>
   )
 }
