@@ -26,11 +26,7 @@ export async function generateMetadata ({params}, parent) {
   return {
     title: data.post.title
   }
-<<<<<<< HEAD
 }
-=======
-} 
->>>>>>> 0782afbc27154ca141f0595acd08db30601feed1
 
 const SinglePost = async ({params}) => {
   const {data, loading} = await getClient().query({
