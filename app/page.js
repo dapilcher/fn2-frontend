@@ -6,7 +6,7 @@ import PrettyJSON from "../components/PrettyJSON";
 
 
 const Home = async () => {
-  const {data, loading} = await getClient().query({
+  const { data, loading } = await getClient().query({
     query: GET_ALL_POSTS,
     context: {
       fetchOptions: {
@@ -17,13 +17,19 @@ const Home = async () => {
   if (loading) return <p>Loading...</p>
   return (
     <>
-      {data.posts.length > 0 ?
-        <PostList posts={data.posts} /> :
-        <BodyContainer>
+      <BodyContainer>
+        {data.posts.length > 0 ?
+          <>
+            <div className="mb-8">
+              <h1 className="text-2xl font-display">Recent posts</h1>
+            </div>
+            <PostList posts={data.posts} />
+          </>
+          :
           <p>There are no posts published 🤷‍♂️</p>
-        </BodyContainer>
-      }
-      {/* <PrettyJSON data={data} className="mt-10"/> */}
+        }
+        {/* <PrettyJSON data={data} className="mt-10"/> */}
+      </BodyContainer>
     </>
   )
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { getClient } from '../../apollo/client';
 import { GET_PAGE_BY_NAME } from '../../apollo/queries';
 import BodyContainer from '../../components/BodyContainer';

@@ -30,7 +30,7 @@ const GET_AUTHOR_POSTS = gql`
     user(where: $where) {
       id
       name
-      posts {
+      posts(orderBy: [{ createdAt: desc }]) {
         title
         tags {
           name
@@ -55,11 +55,11 @@ const GET_AUTHOR_POSTS = gql`
 `;
 
 const GET_TAG_POSTS = gql`
-  query GET_TAG_POSTS($tagWhere: TagWhereUniqueInput!, $postsWhere: PostWhereInput!) {
+  query GET_TAG_POSTS($tagWhere: TagWhereUniqueInput!) {
   tag(where: $tagWhere) {
     id
     name
-    posts(where: $postsWhere, orderBy: [{ createdAt: desc }]) {
+    posts(orderBy: [{ createdAt: desc }]) {
       tags {
         id
         name

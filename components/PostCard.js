@@ -1,3 +1,4 @@
+import moment from 'moment';
 import Link from 'next/link';
 // import { AdvancedImage } from '@cloudinary/react';
 // import cld from '../lib/cloudinary';
@@ -30,7 +31,9 @@ const PostCard = ({post}) => {
         <div className="my-4">
           {post.tags.length > 0 && <TagList tags={post.tags} />}
           <p className="text-2xl font-display">{post.title}</p>
-          <p className="my-4">{post.author.name}</p>
+        <p className="my-4"><Link href={`/a/${post.author.id}`} className="text-primary-600 hover:text-primary-400">
+          {post.author.name}
+        </Link> | {moment(post.publishedAt || post.createdAt).format("MMMM Do[,] YYYY")}</p>
           <p>{post.blurb}</p>
         </div>
         <Link href={`/p/${post.id}`}>
