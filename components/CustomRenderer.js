@@ -8,7 +8,6 @@ const defaultElementRenderers = {
     },
     heading: ({ level, children, textAlign }) => {
       const Comp = `h${level}`;
-
       switch (level) {
         case 1:
           return <h1 className="font-display text-2xl md:text-3xl mb-3" style={{ textAlign }}>{children}</h1>;

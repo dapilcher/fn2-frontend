@@ -3,7 +3,6 @@
 import { CldImage } from "next-cloudinary";
 
 const CloudImage = ({imageId, ...rest}) => {
-
   const publicId = `${process.env.NEXT_PUBLIC_CLOUDINARY_FILE}/${imageId}`
 
   return (
