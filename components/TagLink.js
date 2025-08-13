@@ -6,7 +6,7 @@ const TagLink = ({id, name}) => {
     <li>
       <Link href={`/t/${id}`}>
         <button
-          className="px-2 py-1 font-display text-sm bg-yellow-500 text-grey-700 uppercase"
+          className="px-2 py-1 font-display text-sm bg-yellow-500 hover:bg-yellow-300 transition-colors text-grey-700 uppercase"
           key={id}>
           {name}
         </button>

@@ -33,7 +33,7 @@ const Header = () => {
           <Nav className="md:flex md:flex-row">
             <NavItem href="/">Home</NavItem>
             <NavItem href="/about">About</NavItem>
-            <NavItem href="/contact">Contact</NavItem>
+            <NavItem href="mailto:contact@flightlessnerd.com">Contact</NavItem>
           </Nav>
           <Nav className="flex flex-row mt-2 md:mt-0">
             <NavItem href="https://x.com/flightlessnews"><img className="fill-grey-700 hover:fill-red-500 h-5 w-5 md:h-4 md:w-4" src="/x.svg"  /></NavItem>
