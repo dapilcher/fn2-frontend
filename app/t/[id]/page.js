@@ -4,22 +4,26 @@ import BodyContainer from '../../../components/BodyContainer';
 import PostList from '../../../components/PostList';
 import PrettyJSON from '../../../components/PrettyJSON';
 
-const TagPage = async ({params}) => {
-  const {data, loading} = await getClient().query({
+const TagPage = async ({ params }) => {
+  const { data, loading } = await getClient().query({
     query: GET_TAG_POSTS,
     variables: {
-      tagWhere: { id: params.id},
-    }
+      tagWhere: { id: params.id },
+    },
+    fetchPolicy: 'network-only'
   });
 
   if (loading) return <p>Loading...</p>
   return (
     <BodyContainer>
-        <div className="mb-8">
-          <h1 className="text-2xl font-display">Tag: {data.tag.name}</h1>
-        </div>
-      <PostList posts={data.tag.posts} />
-      {/* <PrettyJSON data={data} /> */}
+      {data &&
+        <>
+          <div className="mb-8">
+            <h1 className="text-2xl font-display">Tag: {data.tag.name}</h1>
+          </div>
+          <PostList posts={data.tag.posts} />
+        </>}
+      <PrettyJSON data={data} />
     </BodyContainer>
   );
 };
