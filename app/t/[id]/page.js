@@ -10,7 +10,6 @@ const TagPage = async ({ params }) => {
     variables: {
       tagWhere: { id: params.id },
     },
-    fetchPolicy: 'network-only'
   });
 
   if (loading) return <p>Loading...</p>
@@ -23,7 +22,7 @@ const TagPage = async ({ params }) => {
           </div>
           <PostList posts={data.tag.posts} />
         </>}
-      <PrettyJSON data={data} />
+      {/* <PrettyJSON data={data} /> */}
     </BodyContainer>
   );
 };

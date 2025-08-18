@@ -8,7 +8,11 @@ import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rs
 const { getClient } = registerApolloClient(() => {
   return new NextSSRApolloClient({
     link: new HttpLink({
-      uri: process.env.GRAPHQL_URI || "http://localhost:3000/api/graphql"}),
+      uri: process.env.GRAPHQL_URI || "http://localhost:3000/api/graphql",
+      fetchOptions: {
+        next: { revalidate: 10 }
+      }
+    }),
     cache: new NextSSRInMemoryCache(),
   })});
 
