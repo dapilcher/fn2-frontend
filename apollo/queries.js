@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client';
 
 const GET_ALL_POSTS = gql`
-  query GET_ALL_POSTS {
+  query GET_ALL_POSTS($take: Int, $skip: Int) {
     # posts(where: { status: { equals: "PUBLISHED"} }) {
-    posts(orderBy: [{ createdAt: desc}]) {
+    posts(orderBy: [{ createdAt: desc}], take: $take, skip: $skip) {
       author {
         id
         name
@@ -25,12 +25,25 @@ const GET_ALL_POSTS = gql`
   }
 `;
 
+const GET_RECENT_POST_TITLES = gql`
+  query GET_RECENT_POST_TITLES($take: Int, $skip: Int) {
+    # posts(where: { status: { equals: "PUBLISHED"} }) {
+    posts(orderBy: [{ createdAt: desc}], take: $take, skip: $skip) {
+      title
+      id
+      headerImage {
+        id
+      }
+    }
+  }
+`;
+
 const GET_AUTHOR_POSTS = gql`
-  query GET_AUTHOR_POSTS($where: UserWhereUniqueInput!) {
+  query GET_AUTHOR_POSTS($where: UserWhereUniqueInput!, $take: Int, $skip: Int) {
     user(where: $where) {
       id
       name
-      posts(orderBy: [{ createdAt: desc }]) {
+      posts(orderBy: [{ createdAt: desc }], take: $take, skip: $skip) {
         title
         tags {
           name
@@ -55,11 +68,11 @@ const GET_AUTHOR_POSTS = gql`
 `;
 
 const GET_TAG_POSTS = gql`
-  query GET_TAG_POSTS($tagWhere: TagWhereUniqueInput!) {
+  query GET_TAG_POSTS($tagWhere: TagWhereUniqueInput!, $take: Int, $skip: Int) {
   tag(where: $tagWhere) {
     id
     name
-    posts(orderBy: [{ createdAt: desc }]) {
+    posts(orderBy: [{ createdAt: desc }], take: $take, skip: $skip) {
       tags {
         id
         name
@@ -121,6 +134,7 @@ const GET_PAGE_BY_NAME = gql`
 
 export {
   GET_ALL_POSTS,
+  GET_RECENT_POST_TITLES,
   GET_AUTHOR_POSTS,
   GET_POST_BY_ID,
   GET_TAG_POSTS,

@@ -1,7 +1,7 @@
 import moment from "moment";
 import Link from "next/link";
 import { getClient } from "../../../apollo/client";
-import { GET_POST_BY_ID } from "../../../apollo/queries";
+import { GET_POST_BY_ID, GET_RECENT_POST_TITLES } from "../../../apollo/queries";
 import Hero from "../../../components/Hero";
 import BodyContainer from "../../../components/BodyContainer";
 import CustomRenderer from "../../../components/CustomRenderer";
@@ -9,27 +9,24 @@ import PrettyJSON from "../../../components/PrettyJSON";
 import Image from "next/image";
 import HeaderImage from "../../../components/HeaderImage";
 import TagList from "../../../components/TagList";
+import LayoutWithSidebar from "../../../components/LayoutWithSidebar";
+import PostListSmall from "../../../components/PostListSmall";
 
 
-// Metadata
-export async function generateMetadata ({params}, parent) {
-  const {data} = await getClient().query({
+// MetapostsData
+export async function generateMetapostsData({ params }, parent) {
+  const { data } = await getClient().query({
     query: GET_POST_BY_ID,
     variables: { where: { id: params.id } },
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 },
-      },
-    },
   });
 
   return {
-    title: data.post.title
+    title: data.post.title || "Flightless Nerd",
   }
 }
 
-const SinglePost = async ({params}) => {
-  const {data, loading} = await getClient().query({
+const SinglePost = async ({ params }) => {
+  const { data: postsData, loading: postsLoading } = await getClient().query({
     query: GET_POST_BY_ID,
     variables: { where: { id: params.id } },
     context: {
@@ -39,40 +36,54 @@ const SinglePost = async ({params}) => {
     },
   });
 
-  // console.log(data.post.content.document[8])
+  const { data: recentsData, loading: recentsLoading } = await getClient().query({
+    query: GET_RECENT_POST_TITLES,
+    variables: { take: 3 },
+  });
 
-  if (loading) return <p>Loading...</p>
+  // console.log(postsData.post.content.document[8])
+
+  if (postsLoading) return <p>Loading...</p>
 
   return (
     <>
-      {/* <Hero src={data.post.headerImage.publicUrl} /> */}
-      {data.post.headerImage?.id && <HeaderImage
-        imageId={data.post.headerImage.id}
+      {/* <Hero src={postsData.post.headerImage.publicUrl} /> */}
+      {postsData.post.headerImage?.id && <HeaderImage
+        imageId={postsData.post.headerImage.id}
         className="max-w-full"
-        attribution={data.post.headerImageAttribution}
-        attributionUrl={data.post.headerImageAttributionUrl}
-        alt={data.post.title}
+        attribution={postsData.post.headerImageAttribution}
+        attributionUrl={postsData.post.headerImageAttributionUrl}
+        alt={postsData.post.title}
       />}
       <div className="mb-16 mt-8 w-full">
-        <h1 className="text-3xl font-display mb-2">{data.post.title}</h1>
+        <h1 className="text-3xl font-display mb-2">{postsData.post.title}</h1>
         <p className="text-md md:text-md mb-4">
-          By <Link href={`/a/${data.post.author.id}`} className="text-primary-600 hover:text-primary-400">
-            {data.post.author.name}
+          By <Link href={`/a/${postsData.post.author.id}`} className="text-primary-600 hover:text-primary-400">
+            {postsData.post.author.name}
           </Link>
           <span className="mx-2">{"|"}</span>
           Updated on{' '}
-          {moment(data.post.publishedAt || data.post.createdAt).format("MMMM Do[,] YYYY")}
+          {moment(postsData.post.publishedAt || postsData.post.createdAt).format("MMMM Do[,] YYYY")}
         </p>
-        <TagList tags={data.post.tags} />
+        <TagList tags={postsData.post.tags} />
       </div>
-      <article className="">
-        {data.post.content?.document ?
-          <>
-            <CustomRenderer document={data.post.content.document} />
-            {/* <PrettyJSON data={data.post.content.document} /> */}
-          </> : <p>No content</p>
-        }
-      </article>
+      <div className="flex flex-col gap-5 xl:grid xl:grid-cols-12 flex-1">
+        <article className="flex flex-col col-span-9">
+          {postsData.post.content?.document ?
+            <div>
+              <CustomRenderer document={postsData.post.content.document} />
+              {/* <PrettyJSON postsData={postsData.post.content.document} /> */}
+            </div> : <p>No content</p>
+          }
+        </article>
+        <aside className="col-span-3">
+          {recentsLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <PostListSmall posts={recentsData.posts} />
+          )}
+        </aside>
+      </div>
     </>
   )
 }

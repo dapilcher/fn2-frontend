@@ -2,6 +2,8 @@ import { getClient } from "../apollo/client";
 import { GET_ALL_POSTS } from "../apollo/queries";
 import BodyContainer from "../components/BodyContainer";
 import PostList from "../components/PostList";
+import Sidebar from "../components/Sidebar";
+import Carousel from "../components/Carousel";
 import PrettyJSON from "../components/PrettyJSON";
 
 
@@ -17,19 +19,22 @@ const Home = async () => {
   if (loading) return <p>Loading...</p>
   return (
     <>
-      <BodyContainer>
-        {data.posts.length > 0 ?
-          <>
-            <div className="mb-8">
-              <h1 className="text-2xl font-display">Recent posts</h1>
-            </div>
-            <PostList posts={data.posts} />
-          </>
-          :
-          <p>There are no posts published 🤷‍♂️</p>
-        }
+        <Carousel posts={data.posts.slice(0,3)} />
+      {/* <BodyContainer> */}
+          <div className="flex flex-col gap-12 xl:grid xl:grid-cols-12 flex-1">
+            <section className="flex flex-col items-center justify-start col-span-9">
+              {data.posts.length > 0 ?
+                <>
+                  <PostList posts={data.posts} />
+                </>
+                :
+                <p>There are no posts published 🤷‍♂️</p>
+              }
+            </section>
+            <Sidebar />
+          </div>
         {/* <PrettyJSON data={data} className="mt-10"/> */}
-      </BodyContainer>
+      {/* </BodyContainer> */}
     </>
   )
 }

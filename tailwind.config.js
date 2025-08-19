@@ -11,6 +11,9 @@ module.exports = {
       body: ['var(--font-body)', 'Inter', 'system-ui', 'sans-serif'],
     },
     colors: {
+      black: '#000000',
+      white: '#FFFFFF',
+      transparent: 'transparent',
       primary: {
         50: '#eff6ff',
         100: '#dbeafe',

@@ -3,7 +3,7 @@ import PostCard from "../components/PostCard";
 
 const PostList = ({posts}) => {
   return (
-    <ul className="grid md:grid-cols-2 gap-8">
+    <ul className="grid md:grid-cols-2 gap-8 lg:gap-12">
       {posts.map(post => (
         <PostCard key={post.id} post={post} />
       ))}

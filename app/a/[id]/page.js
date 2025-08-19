@@ -7,7 +7,11 @@ import PrettyJSON from '../../../components/PrettyJSON';
 const AuthorPage = async ({params}) => {
   const {data, loading} = await getClient().query({
     query: GET_AUTHOR_POSTS,
-    variables: { where: { id: params.id}}
+    variables: {
+      where: { id: params.id},
+      take: 10,
+      skip: 0
+    },
   });
 
   if (loading) return <p>Loading...</p>

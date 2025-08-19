@@ -9,37 +9,41 @@ import TagList from './TagList';
 
 // import { CldImage } from "next-cloudinary";
 
-const PostCard = ({post}) => {
+const PostCard = ({ post }) => {
   // const image = cld.image(post.headerImage.filename);
   // console.log({image})
   // const publicId = `${process.env.NEXT_PUBLIC_CLOUDINARY_FILE}/${post.headerImage.id}`
 
   return (
-    <li key={post.id} className="flex flex-col items-start">
-        {/* <AdvancedImage cldImg={image} /> */}
-        {post.headerImage?.id && <CloudImage
-          imageId={post.headerImage.id}
-          alt={post.title}
-          width="1000"
-          height="500"
-          crop="auto"
-          gravity="faces"
-          sizes="(max-width: 768px) 100vw,
+    <li key={post.id} className="flex flex-col items-start border-b border-grey-200 pb-4 mb-4 md:borde-0 md:pb-0 md:mb-0 md:rounded-b-xl md:shadow-md">
+      {/* <AdvancedImage cldImg={image} /> */}
+      {post.headerImage?.id && <CloudImage
+        imageId={post.headerImage.id}
+        alt={post.title}
+        width="1000"
+        height="500"
+        crop="auto"
+        gravity="faces"
+        sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
-        />}
-        <div className="my-4">
+      />}
+      <div className="p-4">
+        <div className="">
           {post.tags.length > 0 && <TagList tags={post.tags} />}
-          <p className="text-2xl font-display">{post.title}</p>
-        <p className="my-4"><Link href={`/a/${post.author.id}`} className="text-primary-600 hover:text-primary-400">
-          {post.author.name}
-        </Link> | {moment(post.publishedAt || post.createdAt).format("MMMM Do[,] YYYY")}</p>
-          <p>{post.blurb}</p>
         </div>
+        <p className="text-2xl font-display">{post.title}</p>
+        <p className="my-2">
+          <Link href={`/a/${post.author.id}`} className="text-primary-600 hover:text-primary-400">
+            {post.author.name}
+          </Link> | {moment(post.publishedAt || post.createdAt).format("MMMM Do[,] YYYY")}
+        </p>
+        {/* <p>{post.blurb}</p> */}
         <Link href={`/p/${post.id}`}>
           <Button>Continue Reading →</Button>
         </Link>
-      </li>
+      </div>
+    </li>
   );
 };
 

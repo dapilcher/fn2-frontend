@@ -1,17 +1,17 @@
 import Link from "next/link";
 import CloudImage from "./CloudImage";
 
-const PostListSmall = ({posts = []}) => {
+const PostListSmall = ({posts = [], sectionTitle = "Recent posts"}) => {
   return (
-    <>
+    <div className="md:my-8 xl:m-0">
       <h1 className="font-display text-lg xl:text-base flex items-center text-red-500 hover:text-red-500 uppercase">
-        Recent posts
+        {sectionTitle}
       </h1>
-    <ul className="flex flex-col md:grid md:grid-flow-col md:auto-cols-fr gap-4 xl:flex xl:flex-col">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xl:flex xl:flex-col">
       {posts.map(post => (
         <li key={post.id} className="flex flex-col w-full">
-          <Link href={`/p/${post.id}`} className="text-md mb-2 font-body text-primary-600 hover:text-primary-400">
-            <div>
+          <Link href={`/p/${post.id}`} className="text-md mb-2 font-body text-primary-600 hover:text-primary-400 hover:opacity-90 transition-all">
+            <div className="relative">
               <CloudImage
                 imageId={post.headerImage.id}
                 alt={post.title}
@@ -29,7 +29,7 @@ const PostListSmall = ({posts = []}) => {
         </li>
       ))}
     </ul>
-    </>
+    </div>
   );
 };
 
