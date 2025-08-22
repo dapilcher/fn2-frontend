@@ -46,6 +46,12 @@ jobs:
           contents: |
             FRONTEND_URL="${{ secrets.FRONTEND_URL }}"
             GRAPHQL_URI="${{ secrets.GRAPHQL_URI }}"
+            CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}"
+            CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}"
+            CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}"
+            NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}"
+            NEXT_PUBLIC_CLOUDINARY_FILE="${{ secrets.NEXT_PUBLIC_CLOUDINARY_FILE }}"
+            NEXT_PUBLIC_GA_TRACKING_ID="${{ secrets.NEXT_PUBLIC_GA_TRACKING_ID }}"
       - name: Deploy via rsync
         uses: burnett01/rsync-deployments@6.0.0
         with:
