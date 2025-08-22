@@ -1,7 +1,29 @@
 import { DocumentRenderer, DocumentRendererProps } from "@keystone-6/document-renderer";
+import slugify from "slugify";
 import DropCap from "./DropCap";
+import DocumentImage from "./DocumentImage";
+import Quote from "./Quote";
 
 const defaultElementRenderers = {
+  inline: {
+    relationship({ relationship, data }) {
+      if (relationship === 'mention') {
+        if (data === null || data.data === undefined) {
+          return <span>[unknown author]</span>
+        } else {
+          return <Link href={`/a/${data.data.id}`}>{data.data.name}</Link>;
+        }
+      }
+      if (relationship === 'postMention') {
+        if (data === null || data.data === undefined) {
+          return <span>[unknown post]</span>
+        } else {
+          return <Link href={`/p/${data.data.id}`}>{data.data.title}</Link>;
+        }
+      }
+      return null;
+    },
+  },
   block: {
     paragraph: ({children, textAlign}) => {
       return <p className="mb-8 font-body text-lg font-light" style={{ textAlign }}>{children}</p>
@@ -12,7 +34,12 @@ const defaultElementRenderers = {
         case 1:
           return <h1 className="font-display text-2xl md:text-3xl mb-3" style={{ textAlign }}>{children}</h1>;
         case 2:
-          return <h2 className="font-display text-xl md:text-2xl font-bold mb-3" style={{ textAlign }}>{children}</h2>;
+          return (
+            <>
+              <h2 className="font-display text-xl md:text-2xl" style={{ textAlign }}>{children}</h2>
+              <span className="h-3 w-6 bg-yellow-500 block mb-3" />
+            </>
+        );
         case 3:
           return <h3 className="font-display text-lg md:text-xl font-medium mb-3" style={{ textAlign }}>{children}</h3>;
         case 4:
@@ -31,13 +58,19 @@ const defaultElementRenderers = {
       }}>{children.map((x, i) => (
             <li key={i} className="mb-2 font-body text-lg font-light">{x}</li>
           ))}</ul>
-    }
+    },
   }
 }
 
 const customComponentRenderers = {
   dropCap: props => (
     <DropCap {...props} />
+  ),
+  documentImage: props => (
+    <DocumentImage {...props} />
+  ),
+  quote: props => (
+    <Quote {...props} />
   )
 }
 

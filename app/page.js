@@ -1,7 +1,7 @@
 import { getClient } from "../apollo/client";
 import { GET_ALL_POSTS } from "../apollo/queries";
 import BodyContainer from "../components/BodyContainer";
-import PostList from "../components/PostList";
+import PostCardGrid from "../components/PostCardGrid";
 import Sidebar from "../components/Sidebar";
 import Carousel from "../components/Carousel";
 import PrettyJSON from "../components/PrettyJSON";
@@ -25,7 +25,7 @@ const Home = async () => {
             <section className="flex flex-col items-center justify-start col-span-9">
               {data.posts.length > 0 ?
                 <>
-                  <PostList posts={data.posts} />
+                  <PostCardGrid posts={data.posts} />
                 </>
                 :
                 <p>There are no posts published 🤷‍♂️</p>

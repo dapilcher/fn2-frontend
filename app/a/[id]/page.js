@@ -1,7 +1,7 @@
 import { getClient } from '../../../apollo/client';
 import { GET_AUTHOR_POSTS } from '../../../apollo/queries';
 import BodyContainer from '../../../components/BodyContainer';
-import PostList from '../../../components/PostList';
+import PostCardGrid from '../../../components/PostCardGrid';
 import PrettyJSON from '../../../components/PrettyJSON';
 
 const AuthorPage = async ({params}) => {
@@ -20,7 +20,7 @@ const AuthorPage = async ({params}) => {
         <div className="mb-8">
           <h1 className="text-2xl font-display">By {data.user.name}</h1>
         </div>
-      <PostList posts={data.user.posts} />
+      <PostCardGrid posts={data.user.posts} />
       {/* <PrettyJSON data={data} /> */}
     </BodyContainer>
   );

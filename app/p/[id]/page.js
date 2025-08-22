@@ -2,26 +2,22 @@ import moment from "moment";
 import Link from "next/link";
 import { getClient } from "../../../apollo/client";
 import { GET_POST_BY_ID, GET_RECENT_POST_TITLES } from "../../../apollo/queries";
-import Hero from "../../../components/Hero";
-import BodyContainer from "../../../components/BodyContainer";
 import CustomRenderer from "../../../components/CustomRenderer";
 import PrettyJSON from "../../../components/PrettyJSON";
-import Image from "next/image";
 import HeaderImage from "../../../components/HeaderImage";
 import TagList from "../../../components/TagList";
-import LayoutWithSidebar from "../../../components/LayoutWithSidebar";
 import PostListSmall from "../../../components/PostListSmall";
 
 
 // MetapostsData
-export async function generateMetapostsData({ params }, parent) {
+export async function generateMetadata({ params }, parent) {
   const { data } = await getClient().query({
     query: GET_POST_BY_ID,
     variables: { where: { id: params.id } },
   });
 
   return {
-    title: data.post.title || "Flightless Nerd",
+    title: `${data.post.title} | Flightless Nerd` || "Flightless Nerd",
   }
 }
 
@@ -38,7 +34,7 @@ const SinglePost = async ({ params }) => {
 
   const { data: recentsData, loading: recentsLoading } = await getClient().query({
     query: GET_RECENT_POST_TITLES,
-    variables: { take: 3 },
+    variables: { take: 4 },
   });
 
   // console.log(postsData.post.content.document[8])
@@ -47,7 +43,6 @@ const SinglePost = async ({ params }) => {
 
   return (
     <>
-      {/* <Hero src={postsData.post.headerImage.publicUrl} /> */}
       {postsData.post.headerImage?.id && <HeaderImage
         imageId={postsData.post.headerImage.id}
         className="max-w-full"
@@ -67,7 +62,7 @@ const SinglePost = async ({ params }) => {
         </p>
         <TagList tags={postsData.post.tags} />
       </div>
-      <div className="flex flex-col gap-5 xl:grid xl:grid-cols-12 flex-1">
+      <div className="flex flex-col gap-8 xl:grid xl:grid-cols-12 flex-1">
         <article className="flex flex-col col-span-9">
           {postsData.post.content?.document ?
             <div>

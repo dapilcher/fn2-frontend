@@ -1,7 +1,7 @@
 import React from 'react';
-import PostCard from "../components/PostCard";
+import PostCard from "./PostCard";
 
-const PostList = ({posts}) => {
+const PostCardGrid = ({posts}) => {
   return (
     <ul className="grid md:grid-cols-2 gap-8 lg:gap-12">
       {posts.map(post => (
@@ -11,4 +11,4 @@ const PostList = ({posts}) => {
   );
 };
 
-export default PostList;
+export default PostCardGrid;
