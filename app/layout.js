@@ -39,16 +39,10 @@ const Layout = ({ children }) => {
   return (
     <html lang="eng" className={`${displayFont.variable} ${bodyFont.variable}`}>
       <body className="bg-grey-0 font-body min-h-screen w-screen flex justify-center">
-        <ReportWebVitals />
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_TRACKING_ID} />
+        {/* <ReportWebVitals /> */}
+          {process.env.NODE_ENV === "production" && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_TRACKING_ID} />}
           <BodyContainer>
             <Header />
-            {/* <div className="flex flex-col gap-4 xl:grid xl:grid-cols-12 flex-1">
-            <section className="flex flex-col items-center justify-start col-span-9">
-              {children}
-            </section>
-            <Sidebar />
-          </div> */}
             <div className="flex-1">
               {children}
             </div>
