@@ -15,7 +15,7 @@ const PostCard = ({ post }) => {
   // const publicId = `${process.env.NEXT_PUBLIC_CLOUDINARY_FILE}/${post.headerImage.id}`
 
   return (
-    <li key={post.id} className="flex flex-col items-start border-b border-grey-200 pb-4 mb-4 md:border-0 md:pb-0 md:mb-0 md:rounded-b-xl">
+    <li key={`post-${post.id}`} className="flex flex-col items-start border-b border-grey-200 pb-4 mb-4 md:border-0 md:pb-0 md:mb-0 md:rounded-b-xl">
       {/* <AdvancedImage cldImg={image} /> */}
       {post.headerImage?.id && <CloudImage
         imageId={post.headerImage.id}
@@ -39,7 +39,7 @@ const PostCard = ({ post }) => {
           </Link> | {moment(post.publishedAt || post.createdAt).format("MMMM Do[,] YYYY")}
         </p>
         {/* <p>{post.blurb}</p> */}
-        <Link href={`/p/${post.id}`}>
+        <Link href={`/p/${post.slug}`}>
           <Button>Continue Reading →</Button>
         </Link>
       </div>

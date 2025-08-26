@@ -62,7 +62,7 @@ const Slide = ({ sliding, post }) => (
 			}
 		`}</style>
     <div className={`carousel-slide ${sliding ? "sliding" : ""}`}>
-      <Link href={`/p/${post.id}`}>
+      <Link href={`/p/${post.slug}`}>
           {post.headerImage && post.headerImage.id ? (
             <CloudImage
               imageId={post.headerImage.id}
@@ -78,7 +78,7 @@ const Slide = ({ sliding, post }) => (
           )}
       </Link>
       <div className="slide-text-box">
-        <Link href={`/p/${post.id}`}>
+        <Link href={`/p/${post.slug}`}>
 					<h1 className="font-display text-lg md:text-xl">
             {post.title}
 						</h1>

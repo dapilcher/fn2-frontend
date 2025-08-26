@@ -13,18 +13,18 @@ import PostListSmall from "../../../components/PostListSmall";
 export async function generateMetadata({ params }, parent) {
   const { data } = await getClient().query({
     query: GET_POST_BY_ID,
-    variables: { where: { id: params.id } },
+    variables: { where: { slug: params.id } }, // update to use slug
   });
 
   return {
-    title: `${data.post.title} | Flightless Nerd` || "Flightless Nerd",
+    title: `${data.post?.title} | Flightless Nerd` || "Flightless Nerd",
   }
 }
 
 const SinglePost = async ({ params }) => {
   const { data: postsData, loading: postsLoading } = await getClient().query({
     query: GET_POST_BY_ID,
-    variables: { where: { id: params.id } },
+    variables: { where: { slug: params.id } },
     context: {
       fetchOptions: {
         next: { revalidate: 5 },
@@ -41,26 +41,32 @@ const SinglePost = async ({ params }) => {
 
   if (postsLoading) return <p>Loading...</p>
 
+  if (!postsData.post) return <p>Post not found</p>
+
   return (
     <>
-      {postsData.post.headerImage?.id && <HeaderImage
-        imageId={postsData.post.headerImage.id}
-        className="max-w-full"
-        attribution={postsData.post.headerImageAttribution}
-        attributionUrl={postsData.post.headerImageAttributionUrl}
-        alt={postsData.post.title}
-      />}
-      <div className="mb-16 mt-8 w-full">
-        <h1 className="text-3xl font-display mb-2">{postsData.post.title}</h1>
-        <p className="text-md md:text-md mb-4">
-          By <Link href={`/a/${postsData.post.author.id}`} className="text-primary-600 hover:text-primary-400">
-            {postsData.post.author.name}
-          </Link>
-          <span className="mx-2">{"|"}</span>
-          Updated on{' '}
-          {moment(postsData.post.publishedAt || postsData.post.createdAt).format("MMMM Do[,] YYYY")}
-        </p>
-        <TagList tags={postsData.post.tags} />
+      <div className="xl:grid xl:grid-cols-12 flex flex-col width-full">
+        <div className="col-span-9">
+          {postsData.post.headerImage?.id && <HeaderImage
+            imageId={postsData.post.headerImage.id}
+            className="max-w-full"
+            attribution={postsData.post.headerImageAttribution}
+            attributionUrl={postsData.post.headerImageAttributionUrl}
+            alt={postsData.post.title}
+          />}
+          <div className="mb-16 mt-8 w-full">
+            <h1 className="text-3xl font-display mb-2">{postsData.post.title}</h1>
+            <p className="text-md md:text-md mb-4">
+              By <Link href={`/a/${postsData.post.author.id}`} className="text-primary-600 hover:text-primary-400">
+                {postsData.post.author.name}
+              </Link>
+              <span className="mx-2">{"|"}</span>
+              Updated on{' '}
+              {moment(postsData.post.publishedAt || postsData.post.createdAt).format("MMMM Do[,] YYYY")}
+            </p>
+            <TagList tags={postsData.post.tags} />
+          </div>
+        </div>
       </div>
       <div className="flex flex-col gap-8 xl:grid xl:grid-cols-12 flex-1">
         <article className="flex flex-col col-span-9">

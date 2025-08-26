@@ -8,7 +8,7 @@ const TagPage = async ({ params }) => {
   const { data, loading } = await getClient().query({
     query: GET_TAG_POSTS,
     variables: {
-      tagWhere: { id: params.id },
+      tagWhere: { slug: params.id },
       take: 10,
       skip: 0
     },

@@ -12,6 +12,7 @@ const GET_ALL_POSTS = gql`
         document
       }
       title
+      slug
       id
       headerImage {
         id
@@ -19,6 +20,7 @@ const GET_ALL_POSTS = gql`
       blurb
       tags {
         name
+        slug
         id
       }
     }
@@ -31,6 +33,7 @@ const GET_RECENT_POST_TITLES = gql`
     posts(orderBy: [{ createdAt: desc}], take: $take, skip: $skip) {
       title
       id
+      slug
       headerImage {
         id
       }
@@ -45,8 +48,10 @@ const GET_AUTHOR_POSTS = gql`
       name
       posts(orderBy: [{ createdAt: desc }], take: $take, skip: $skip) {
         title
+        slug
         tags {
           name
+          slug
           id
         }
         author {
@@ -71,10 +76,12 @@ const GET_TAG_POSTS = gql`
   query GET_TAG_POSTS($tagWhere: TagWhereUniqueInput!, $take: Int, $skip: Int) {
   tag(where: $tagWhere) {
     id
+    slug
     name
     posts(orderBy: [{ createdAt: desc }], take: $take, skip: $skip) {
       tags {
         id
+        slug
         name
       }
       author {
@@ -82,6 +89,7 @@ const GET_TAG_POSTS = gql`
         name
       }
       title
+      slug
       headerImage {
         id
       }
@@ -96,6 +104,7 @@ const GET_POST_BY_ID = gql`
   query GET_POST_BY_ID($where: PostWhereUniqueInput!) {
     post(where: $where) {
       id
+      slug
       author {
         id
         name

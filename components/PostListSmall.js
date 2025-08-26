@@ -9,8 +9,8 @@ const PostListSmall = ({posts = [], sectionTitle = "Recent posts"}) => {
       </h1>
     <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xl:flex xl:flex-col">
       {posts.map(post => (
-        <li key={post.id} className="flex flex-col w-full">
-          <Link href={`/p/${post.id}`} className="text-md mb-2 font-body text-primary-600 hover:text-primary-400 hover:opacity-90 transition-all">
+        <li key={`post-${post.id}`} className="flex flex-col w-full">
+          <Link href={`/p/${post.slug}`} className="text-md mb-2 font-body text-primary-600 hover:text-primary-400 hover:opacity-90 transition-all">
             <div className="relative">
               <CloudImage
                 imageId={post.headerImage.id}
