@@ -1,8 +1,22 @@
 import { getClient } from '../../../apollo/client';
-import { GET_TAG_POSTS } from '../../../apollo/queries';
+import { GET_TAG, GET_TAG_POSTS } from '../../../apollo/queries';
 import BodyContainer from '../../../components/BodyContainer';
 import PostCardGrid from '../../../components/PostCardGrid';
 import PrettyJSON from '../../../components/PrettyJSON';
+import defaultMetadata from '../../../lib/metadata';
+
+// MetapostsData
+export async function generateMetadata({ params }, parent) {
+  const { data } = await getClient().query({
+    query: GET_TAG,
+    variables: { where: { slug: params.id } }, // update to use slug
+  });
+
+  return {
+    title: `${data.tag?.name} | Flightless Nerd` || defaultMetadata.title,
+    description: defaultMetadata.description,
+  }
+}
 
 const TagPage = async ({ params }) => {
   const { data, loading } = await getClient().query({

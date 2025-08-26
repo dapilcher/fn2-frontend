@@ -2,6 +2,12 @@ import { getClient } from '../../apollo/client';
 import { GET_PAGE_BY_NAME } from '../../apollo/queries';
 import BodyContainer from '../../components/BodyContainer';
 import CustomRenderer from '../../components/CustomRenderer';
+import defaultMetadata from '../../lib/metadata';
+
+export const metadata = {
+  title: 'Contact | Flightless Nerd',
+  description: defaultMetadata.description,
+}
 
 const ContactPage = async () => {
   const {data, loading} = await getClient().query({

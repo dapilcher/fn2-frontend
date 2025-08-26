@@ -41,6 +41,14 @@ const GET_RECENT_POST_TITLES = gql`
   }
 `;
 
+const GET_AUTHOR = gql`
+  query GET_AUTHOR_POSTS($where: UserWhereUniqueInput!) {
+    user(where: $where) {
+      name
+    }
+  }
+`;
+
 const GET_AUTHOR_POSTS = gql`
   query GET_AUTHOR_POSTS($where: UserWhereUniqueInput!, $take: Int, $skip: Int) {
     user(where: $where) {
@@ -70,6 +78,14 @@ const GET_AUTHOR_POSTS = gql`
       }
     }
   }
+`;
+
+const GET_TAG = gql`
+  query GET_TAG($tagWhere: TagWhereUniqueInput!) {
+  tag(where: $tagWhere) {
+    name
+  }
+}
 `;
 
 const GET_TAG_POSTS = gql`
@@ -144,8 +160,10 @@ const GET_PAGE_BY_NAME = gql`
 export {
   GET_ALL_POSTS,
   GET_RECENT_POST_TITLES,
+  GET_AUTHOR,
   GET_AUTHOR_POSTS,
   GET_POST_BY_ID,
+  GET_TAG,
   GET_TAG_POSTS,
   GET_PAGE_BY_NAME
 }
