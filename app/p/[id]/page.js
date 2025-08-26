@@ -18,6 +18,7 @@ export async function generateMetadata({ params }, parent) {
 
   return {
     title: `${data.post?.title} | Flightless Nerd` || "Flightless Nerd",
+    description: data.post?.blurb || 'A blog about tech, programming, and other nerdy things.',
   }
 }
 
