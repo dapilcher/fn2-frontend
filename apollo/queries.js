@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 const GET_ALL_POSTS = gql`
   query GET_ALL_POSTS($take: Int, $skip: Int) {
     # posts(where: { status: { equals: "PUBLISHED"} }) {
-    posts(orderBy: [{ createdAt: desc}], take: $take, skip: $skip) {
+    posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ createdAt: desc}], take: $take, skip: $skip) {
       author {
         id
         name
@@ -29,8 +29,7 @@ const GET_ALL_POSTS = gql`
 
 const GET_RECENT_POST_TITLES = gql`
   query GET_RECENT_POST_TITLES($take: Int, $skip: Int) {
-    # posts(where: { status: { equals: "PUBLISHED"} }) {
-    posts(orderBy: [{ createdAt: desc}], take: $take, skip: $skip) {
+    posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ createdAt: desc}], take: $take, skip: $skip) {
       title
       id
       slug
@@ -54,7 +53,7 @@ const GET_AUTHOR_POSTS = gql`
     user(where: $where) {
       id
       name
-      posts(orderBy: [{ createdAt: desc }], take: $take, skip: $skip) {
+      posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ createdAt: desc }], take: $take, skip: $skip) {
         title
         slug
         tags {
@@ -94,7 +93,7 @@ const GET_TAG_POSTS = gql`
     id
     slug
     name
-    posts(orderBy: [{ createdAt: desc }], take: $take, skip: $skip) {
+    posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ createdAt: desc }], take: $take, skip: $skip) {
       tags {
         id
         slug

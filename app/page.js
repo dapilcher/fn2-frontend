@@ -21,7 +21,7 @@ const Home = async () => {
   if (loading) return <p>Loading...</p>
   return (
     <>
-        <Carousel posts={data.posts.slice(0,3)} />
+        {data.posts?.length > 0 && <Carousel posts={data.posts.slice(0,3)} />}
       {/* <BodyContainer> */}
           <div className="flex flex-col gap-12 xl:grid xl:grid-cols-12 flex-1">
             <section className="flex flex-col items-center justify-start col-span-9">
