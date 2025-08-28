@@ -45,89 +45,23 @@ function Carousel({ posts }) {
 
   return (
     <>
-      <style jsx>{`
-                .carousel__container {
-                    max-width: 100%;
-                    position: relative;
-                    {/* border-bottom: 0.3rem solid #eb3e34; */}
-                }
-                .prev,
-                .next {
-                    cursor: pointer;
-                    position: absolute;
-                    top: 50%;
-                    width: auto;
-                    margin-top: -22px;
-                    padding: 1rem;
-                    background: rgba(255, 255, 255, 0.4);
-                    font-weight: bold;
-                    font-size: 1rem;
-                    transition: 0.5s ease;
-                    border-radius: 0 3px 3px 0;
-                }
-                .next {
-                    right: 0;
-                    border-radius: 3px 0 0 3px;
-                }
-                .prev:hover,
-                .next:hover {
-                    background: rgba(255, 255, 255, 0.8);
-                }
-                .dots {
-                    position: absolute;
-                    width: 100%;
-                    top: 0;
-                    left: 0;
-                    margin: 0.5rem;
-                }
-                .dot {
-                    cursor: pointer;
-                    height: 0.5rem;
-                    width: 0.5rem;
-                    margin: 0 0.5rem;
-                    background: rgba(255, 255, 255, 0.4);
-                    border-radius: 50%;
-                    display: inline-block;
-                    transition: 0.5s ease;
-                }
-                .dot-active,
-                .dot:hover {
-                    background: rgba(255, 255, 255, 0.8);
-                }
-
-                @media (min-width: 768px) {
-                    .carousel__container {
-                        {/* border-bottom-width: 0.5rem; */}
-                    }
-                    .dots {
-                        text-align: center;
-                        position: absolute;
-                        width: 100%;
-                        bottom: 1rem;
-                        top: auto;
-                    }
-                    .dot {
-                        height: 1rem;
-                        width: 1rem;
-                        margin: 0 0.5rem;
-                    }
-                }
-            `}</style>
-      <div className="carousel__container mb-8 border-b-8 border-red-500">
-        <div className="carousel__slides">
+      <div className="max-w-full relative mb-8 border-b-8 border-red-500">
+        <>
           {slides[slideIndex]}
-        </div>
+        </>
 
-        <a className="prev" onClick={() => shiftSlide(-1)}>
+        <a className="cursor-pointer absolute top-1/2 -mt-6 p-4 bg-white bg-opacity-40 font-bold text-lg md:text-2xl transition duration-300 ease hover:bg-opacity-80 rounded-r"
+          onClick={() => shiftSlide(-1)}>
           &#10094;
         </a>
-        <a className="next" onClick={() => shiftSlide(1)}>
+        <a className="cursor-pointer absolute top-1/2 -mt-6 p-4 bg-white bg-opacity-40 font-bold text-lg md:text-2xl transition duration-300 ease hover:bg-opacity-80 rounded-l right-0"
+          onClick={() => shiftSlide(1)}>
           &#10095;
         </a>
-        <div className="dots">
+        <div className="dots absolute w-full h-auto top-0 left-0 m-2 bottom-auto md:bottom-0 md:top-auto md:text-center">
           {slides.map((_, i) => (
             <a
-              className={`dot ${i === slideIndex ? "dot-active" : ""}`}
+              className={`dot cursor-pointer h-2 w-2 md:h-4 md:w-4  mx-2 bg-white bg-opacity-40 rounded-2xl inline-block transition duration-300 ease hover:bg-opacity-80 ${i === slideIndex ? "dot-active bg-opacity-80" : ""}`}
               onClick={() => setSlide(i)}
               key={`dot-${i}`}
             />
