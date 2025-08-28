@@ -9,7 +9,7 @@ import defaultMetadata from '../../../lib/metadata';
 export async function generateMetadata({ params }, parent) {
   const { data } = await getClient().query({
     query: GET_TAG,
-    variables: { where: { slug: params.id } }, // update to use slug
+    variables: { tagWhere: { slug: params.id } }, // update to use slug
   });
 
   return {
