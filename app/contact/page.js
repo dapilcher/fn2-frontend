@@ -24,9 +24,9 @@ const ContactPage = async () => {
   return (
     <article className="w-full">
       <h1 className="font-display text-3xl mb-8">Contact</h1>
-      {data.page.content?.document ?
+      {data.page?.content?.document ?
             <>
-              <CustomRenderer document={data.page.content.document} />
+              <CustomRenderer document={data.page?.content?.document} />
               {/* <PrettyJSON data={data.post.content.document} /> */}
             </> : <p>No content</p>
           }

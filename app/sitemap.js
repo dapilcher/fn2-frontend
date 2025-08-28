@@ -12,13 +12,13 @@ function sitemap() {
       changeFrequency: 'yearly',
       priority: 0.5,
     },
-    {
-      url: 'https://flightlessnerd.com/contact',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
+    // {
+    //   url: 'https://flightlessnerd.com/contact',
+    //   lastModified: new Date(),
+    //   changeFrequency: 'yearly',
+    //   priority: 0.5,
+    // },
   ]
 }
 
-// export default sitemap;
+export default sitemap;
