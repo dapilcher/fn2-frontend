@@ -69,7 +69,7 @@ const SinglePost = async ({ params }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-8 xl:grid xl:grid-cols-12 flex-1">
+      <div className="flex flex-col gap-12 xl:grid xl:grid-cols-12 flex-1">
         <article className="flex flex-col col-span-9">
           {postsData.post.content?.document ?
             <div>
