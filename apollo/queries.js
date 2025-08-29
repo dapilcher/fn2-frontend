@@ -119,6 +119,8 @@ const GET_POST_BY_ID = gql`
   query GET_POST_BY_ID($where: PostWhereUniqueInput!) {
     post(where: $where) {
       id
+      views
+      avgTimeOnPage
       slug
       author {
         id

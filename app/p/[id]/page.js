@@ -7,6 +7,7 @@ import PrettyJSON from "../../../components/PrettyJSON";
 import HeaderImage from "../../../components/HeaderImage";
 import TagList from "../../../components/TagList";
 import PostListSmall from "../../../components/PostListSmall";
+import PageTracker from "../../../components/PageTracker";
 
 
 // MetapostsData
@@ -46,6 +47,7 @@ const SinglePost = async ({ params }) => {
 
   return (
     <>
+      <PageTracker views={postsData.post.views} slug={postsData.post.slug} avgTimeOnPage={postsData.post.avgTimeOnPage} />
       <div className="xl:grid xl:grid-cols-12 flex flex-col width-full">
         <div className="col-span-9">
           {postsData.post.headerImage?.id && <HeaderImage
@@ -54,6 +56,7 @@ const SinglePost = async ({ params }) => {
             attribution={postsData.post.headerImageAttribution}
             attributionUrl={postsData.post.headerImageAttributionUrl}
             alt={postsData.post.title}
+            priority
           />}
           <div className="mb-16 mt-8 w-full">
             <h1 className="text-3xl font-display mb-2">{postsData.post.title}</h1>
