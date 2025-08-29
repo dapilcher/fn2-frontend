@@ -32,7 +32,7 @@ export default async function sitemap () {
 
   const sitemap = [
     ...defaultPages,
-    ...postsData.posts.map(post => ({
+    ...postsData?.posts.map(post => ({
       url: `https://flightlessnerd.com/p/${post.slug}`,
       lastModified: post.updatedAt,
       changeFrequency: "weekly",

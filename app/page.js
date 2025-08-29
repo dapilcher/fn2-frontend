@@ -25,7 +25,7 @@ const Home = async () => {
       {/* <BodyContainer> */}
           <div className="flex flex-col gap-12 xl:grid xl:grid-cols-12 flex-1">
             <section className="flex flex-col items-center justify-start col-span-9">
-              {data.posts.length > 0 ?
+              {data.posts?.length > 0 ?
                 <>
                   <PostCardGrid posts={data.posts} />
                 </>
