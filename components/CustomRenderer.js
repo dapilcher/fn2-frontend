@@ -26,7 +26,7 @@ const defaultElementRenderers = {
   },
   block: {
     paragraph: ({children, textAlign}) => {
-      return <p className="mb-8 font-body text-lg font-light" style={{ textAlign }}>{children}</p>
+      return <p className="mb-12 font-body text-xl leading-relaxed md:text-lg md:font-light md:leading-loose" style={{ textAlign }}>{children}</p>
     },
     heading: ({ level, children, textAlign }) => {
       const Comp = `h${level}`;
@@ -35,10 +35,10 @@ const defaultElementRenderers = {
           return <h1 className="font-display text-2xl md:text-3xl mb-3" style={{ textAlign }}>{children}</h1>;
         case 2:
           return (
-            <>
-              <h2 className="font-display text-xl md:text-2xl" style={{ textAlign }}>{children}</h2>
-              <span className="h-3 w-6 bg-yellow-500 block mb-3" />
-            </>
+            <div className="mt-16 mb-8">
+              <h2 className="font-display text-2xl" style={{ textAlign }}>{children}</h2>
+              <span className="h-3 w-6 bg-yellow-500 block" />
+            </div>
         );
         case 3:
           return <h3 className="font-display text-lg md:text-xl font-medium mb-3" style={{ textAlign }}>{children}</h3>;

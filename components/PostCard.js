@@ -28,7 +28,7 @@ const PostCard = ({ post }) => {
             (max-width: 1200px) 50vw,
             33vw"
       />}
-      <div className="p-4">
+      <div className="py-4">
         <div className="">
           {post.tags.length > 0 && <TagList tags={post.tags} />}
         </div>

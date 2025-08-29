@@ -61,7 +61,7 @@ const SinglePost = async ({ params }) => {
               By <Link href={`/a/${postsData.post.author.id}`} className="text-primary-600 hover:text-primary-400">
                 {postsData.post.author.name}
               </Link>
-              <span className="mx-2">{"|"}</span>
+              <span className="mx-2">{"//"}</span>
               Updated on{' '}
               {moment(postsData.post.publishedAt || postsData.post.createdAt).format("MMMM Do[,] YYYY")}
             </p>
@@ -70,7 +70,7 @@ const SinglePost = async ({ params }) => {
         </div>
       </div>
       <div className="flex flex-col gap-12 xl:grid xl:grid-cols-12 flex-1">
-        <article className="flex flex-col col-span-9">
+        <article className="flex flex-col col-span-9 border-b border-grey-200 xl:border-0">
           {postsData.post.content?.document ?
             <div>
               <CustomRenderer document={postsData.post.content.document} />
