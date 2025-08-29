@@ -1,6 +1,7 @@
 import './index.css';
 import Header from '../components/Header';
 import { loadDevMessages, loadErrorMessages } from "@apollo/client/dev";
+import { ApolloWrapper } from '../apollo/ApolloWrapper';
 
 import { Red_Hat_Display, Manrope } from "next/font/google";
 import { GoogleAnalytics } from '@next/third-parties/google';
@@ -41,13 +42,15 @@ const Layout = ({ children }) => {
       <body className="bg-grey-0 font-body min-h-screen w-screen flex justify-center">
         {/* <ReportWebVitals /> */}
           {process.env.NODE_ENV === "production" && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_TRACKING_ID} />}
-          <BodyContainer>
-            <Header />
-            <div className="flex-1">
-              {children}
-            </div>
-            <Footer />
-          </BodyContainer>
+          <ApolloWrapper>
+            <BodyContainer>
+              <Header />
+              <div className="flex-1">
+                {children}
+              </div>
+              <Footer />
+            </BodyContainer>
+          </ApolloWrapper>
       </body>
     </html>
   )
