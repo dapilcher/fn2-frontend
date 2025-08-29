@@ -27,6 +27,15 @@ const GET_ALL_POSTS = gql`
   }
 `;
 
+const GET_ALL_PUBLISHED_SLUGS_WITH_MODIFIED = gql`
+  query GET_ALL_PUBLISHED_SLUGS_WITH_MODIFIED {
+    posts(where: { status: { equals: "PUBLISHED"} }) {
+      slug
+      updatedAt
+    }
+  }
+`;
+
 const GET_RECENT_POST_TITLES = gql`
   query GET_RECENT_POST_TITLES($take: Int, $skip: Int) {
     posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ createdAt: desc}], take: $take, skip: $skip) {
@@ -82,6 +91,14 @@ const GET_AUTHOR_POSTS = gql`
 const GET_TAG = gql`
   query GET_TAG($tagWhere: TagWhereUniqueInput!) {
   tag(where: $tagWhere) {
+    name
+  }
+}
+`;
+
+const GET_ALL_TAGS = gql`
+  query GET_ALL_TAG {
+  tag {
     name
   }
 }
@@ -160,11 +177,13 @@ const GET_PAGE_BY_NAME = gql`
 
 export {
   GET_ALL_POSTS,
+  GET_ALL_PUBLISHED_SLUGS_WITH_MODIFIED,
   GET_RECENT_POST_TITLES,
   GET_AUTHOR,
   GET_AUTHOR_POSTS,
   GET_POST_BY_ID,
   GET_TAG,
+  GET_ALL_TAGS,
   GET_TAG_POSTS,
   GET_PAGE_BY_NAME
 }
