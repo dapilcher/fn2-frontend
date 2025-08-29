@@ -1,11 +1,19 @@
 import { gql } from "@apollo/client";
 
 const INCREMENT_POST_VIEWS = gql`
-  mutation INCREMENT_POST_VIEWS($where: PostWhereUniqueInput!, $data: PostUpdateInput!) {
-    updatePost(where: $where, data: $data) {
+  mutation INCREMENT_POST_VIEWS($id: ID!, $views: Int!) {
+    updatePost(where: {id: $id}, data: {views: $views}) {
       views
     }
   }
 `;
 
-export { INCREMENT_POST_VIEWS };
+const UPDATE_AVG_TIME_ON_PAGE = gql`
+  mutation UPDATE_AVG_TIME_ON_PAGE($id: ID!, $time: Int!) {
+    updatePost(where: {id: $id}, data: {avgTimeOnPage: $time}) {
+      avgTimeOnPage
+    }
+  }
+`;
+
+export { INCREMENT_POST_VIEWS, UPDATE_AVG_TIME_ON_PAGE };

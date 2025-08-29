@@ -47,7 +47,7 @@ const SinglePost = async ({ params }) => {
 
   return (
     <>
-      <PageTracker views={postsData.post.views} slug={postsData.post.slug} avgTimeOnPage={postsData.post.avgTimeOnPage} />
+      <PageTracker views={postsData.post.views} id={postsData.post.id} avgTimeOnPage={postsData.post.avgTimeOnPage} />
       <div className="xl:grid xl:grid-cols-12 flex flex-col width-full">
         <div className="col-span-9">
           {postsData.post.headerImage?.id && <HeaderImage
