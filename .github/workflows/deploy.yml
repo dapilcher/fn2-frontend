@@ -52,6 +52,7 @@ jobs:
             NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}"
             NEXT_PUBLIC_CLOUDINARY_FILE="${{ secrets.NEXT_PUBLIC_CLOUDINARY_FILE }}"
             NEXT_PUBLIC_GA_TRACKING_ID="${{ secrets.NEXT_PUBLIC_GA_TRACKING_ID }}"
+            NEXT_PUBLIC_GRAPHQL_URI="${{ secrets.NEXT_PUBLIC_GRAPHQL_URI }}"
       - name: Deploy via rsync
         uses: burnett01/rsync-deployments@6.0.0
         with:

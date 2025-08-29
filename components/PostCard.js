@@ -36,7 +36,7 @@ const PostCard = ({ post }) => {
         <p className="my-2">
           <Link href={`/a/${post.author.id}`} className="text-primary-600 hover:text-primary-400">
             {post.author.name}
-          </Link> | {moment(post.publishedAt || post.createdAt).format("MMMM Do[,] YYYY")}
+          </Link> // {moment(post.publishedAt || post.createdAt).format("MMMM Do[,] YYYY")}
         </p>
         {/* <p>{post.blurb}</p> */}
         <Link href={`/p/${post.slug}`}>
