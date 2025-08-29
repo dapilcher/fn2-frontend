@@ -13,30 +13,29 @@ const PageTracker = ({views, id, avgTimeOnPage}) => {
     // get current time
     const startTime = Date.now();
     // only track in production every 10 minutes, 5 seconds in dev
-    const trackTimeout = process.env.NODE_ENV === 'production' ? (1000 * 60 * 10) : 5000;
+    // const trackTimeout = process.env.NODE_ENV === 'production' ? (1000 * 60 * 10) : 5000;
 
     // logic to store view in localstorage and only increment if not already viewed in last 10 mins
-    const lastViewed = localStorage.getItem(`lastViewed_${id}`);
-    const shouldTrackView = !lastViewed || lastViewed && startTime - lastViewed >= trackTimeout;
-    if (shouldTrackView) {
+    // const lastViewed = localStorage.getItem(`lastViewed_${id}`);
+    // const shouldTrackView = !lastViewed || lastViewed && startTime - lastViewed >= trackTimeout;
+    // if (shouldTrackView) {
       // call api to increment page view count and get current count
       incrementPostViews({ variables: { id, views: (views || 0) + 1 } });
       // store view in localstorage
-      localStorage.setItem(`lastViewed_${id}`, startTime);
-    }
+    //   localStorage.setItem(`lastViewed_${id}`, startTime);
+    // }
     
     // return callback, store time on page
     return () => {
       const endTime = Date.now();
       const timeOnPage = endTime - startTime;
-      console.log(`Time on page: ${timeOnPage}ms`);
-      if (shouldTrackView) {
+      // if (shouldTrackView) {
         // calculate new avg time on page
         const newViews = viewsData?.updatePost.views || (views || 0) + 1;
         const newAvgTimeOnPage = Math.round(((avgTimeOnPage * views) + timeOnPage) / newViews);
         // call update time on page mutation
         updateAvgTimeOnPage({ variables: { id, time: newAvgTimeOnPage }})
-      }
+      // }
     };
   }, []);
 
