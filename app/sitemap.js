@@ -23,12 +23,16 @@ export default async function sitemap () {
     },
   ];
 
-  const {data: postsData} = await getClient().query({
+  const {data: postsData, error} = await getClient().query({
     query: GET_ALL_PUBLISHED_SLUGS_WITH_MODIFIED,
   });
   // const {data: tagsData} = await getClient().query({
   //   query: GET_ALL_TAGS
   // });
+
+  if (error) {
+    return defaultPages;
+  }
 
   const sitemap = [
     ...defaultPages,

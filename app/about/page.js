@@ -10,7 +10,7 @@ export const metadata = {
 }
 
 const AboutPage = async () => {
-    const {data, loading} = await getClient().query({
+    const {data, loading, error} = await getClient().query({
     query: GET_PAGE_BY_NAME,
     variables: { where: { slug: "about-us" } },
     context: {
@@ -21,6 +21,8 @@ const AboutPage = async () => {
   });
 
   if (loading) return <p>Loading...</p>
+  if (error) return <p>Error loading page.</p>
+  if (!data.page) return <p>Page not found.</p>
   return (
     <article>
       <h1 className="font-display text-3xl mb-8">About Us</h1>

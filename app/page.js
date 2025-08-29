@@ -10,7 +10,7 @@ import defaultMetadata from "../lib/metadata";
 export const metadata = defaultMetadata;
 
 const Home = async () => {
-  const { data, loading } = await getClient().query({
+  const { data, loading, error } = await getClient().query({
     query: GET_ALL_POSTS,
     context: {
       fetchOptions: {
@@ -19,6 +19,8 @@ const Home = async () => {
     },
   });
   if (loading) return <p>Loading...</p>
+  if (error) return <p>Error loading page.</p>
+  
   return (
     <>
         {data.posts?.length > 0 && <Carousel posts={data.posts.slice(0,3)} />}
