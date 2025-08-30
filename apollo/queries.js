@@ -184,6 +184,7 @@ const GET_POST_BY_ID = gql`
     post(where: $where) {
       id
       views
+      uniqueVisitors
       avgTimeOnPage
       slug
       author {

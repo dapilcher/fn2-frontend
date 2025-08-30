@@ -8,6 +8,14 @@ const INCREMENT_POST_VIEWS = gql`
   }
 `;
 
+const INCREMENT_UNIQUE_VISITORS = gql`
+  mutation INCREMENT_UNIQUE_VISITORS($id: ID!, $uniqueVisitors: Int!) {
+    updatePost(where: {id: $id}, data: {uniqueVisitors: $uniqueVisitors}) {
+      uniqueVisitors
+    }
+  }
+`;
+
 const UPDATE_AVG_TIME_ON_PAGE = gql`
   mutation UPDATE_AVG_TIME_ON_PAGE($id: ID!, $time: Int!) {
     updatePost(where: {id: $id}, data: {avgTimeOnPage: $time}) {
@@ -16,4 +24,4 @@ const UPDATE_AVG_TIME_ON_PAGE = gql`
   }
 `;
 
-export { INCREMENT_POST_VIEWS, UPDATE_AVG_TIME_ON_PAGE };
+export { INCREMENT_POST_VIEWS, INCREMENT_UNIQUE_VISITORS, UPDATE_AVG_TIME_ON_PAGE };

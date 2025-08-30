@@ -27,11 +27,6 @@ const SinglePost = async ({ params }) => {
   const { data: postsData, loading: postsLoading } = await getClient().query({
     query: GET_POST_BY_ID,
     variables: { where: { slug: params.id } },
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 },
-      },
-    },
   });
 
   const { data: recentsData, loading: recentsLoading } = await getClient().query({
@@ -47,7 +42,7 @@ const SinglePost = async ({ params }) => {
 
   return (
     <>
-      <PageTracker views={postsData.post.views} id={postsData.post.id} avgTimeOnPage={postsData.post.avgTimeOnPage} />
+      <PageTracker views={postsData.post.views} id={postsData.post.id} avgTimeOnPage={postsData.post.avgTimeOnPage} uniqueVisitors={postsData.post.uniqueVisitors} />
       <div className="xl:grid xl:grid-cols-12 flex flex-col width-full">
         <div className="col-span-9">
           {postsData.post.headerImage?.id && <HeaderImage
