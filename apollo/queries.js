@@ -2,14 +2,10 @@ import { gql } from '@apollo/client';
 
 const GET_ALL_POSTS = gql`
   query GET_ALL_POSTS($take: Int, $skip: Int) {
-    # posts(where: { status: { equals: "PUBLISHED"} }) {
-    posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ createdAt: desc}], take: $take, skip: $skip) {
+    posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ publishedAt: desc}], take: $take, skip: $skip) {
       author {
         id
         name
-      }
-      content {
-        document
       }
       title
       slug
@@ -17,6 +13,55 @@ const GET_ALL_POSTS = gql`
       headerImage {
         id
       }
+      headerAltText
+      blurb
+      tags {
+        name
+        slug
+        id
+      }
+    }
+  }
+`;
+
+const GET_POSTS_WHERE = gql`
+  query GET_POSTS_WHERE($where: PostWhereUniqueInput!, $take: Int, $skip: Int) {
+    posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ publishedAt: desc}], take: $take, skip: $skip) {
+      author {
+        id
+        name
+      }
+      title
+      slug
+      id
+      headerImage {
+        id
+      }
+      headerAltText
+      blurb
+      tags {
+        name
+        slug
+        id
+      }
+    }
+  }
+`;
+
+const GET_FEATURED_POSTS = gql`
+  query GET_FEATURED_POSTS {
+    posts(where: { status: { equals: "PUBLISHED"}, featured: { equals: true } }, orderBy: [{ publishedAt: desc}]) {
+      author {
+        id
+        name
+      }
+      title
+      slug
+      id
+      headerImage {
+        id
+      }
+      headerAltText
       blurb
       tags {
         name
@@ -38,19 +83,20 @@ const GET_ALL_PUBLISHED_SLUGS_WITH_MODIFIED = gql`
 
 const GET_RECENT_POST_TITLES = gql`
   query GET_RECENT_POST_TITLES($take: Int, $skip: Int) {
-    posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ createdAt: desc}], take: $take, skip: $skip) {
+    posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ publishedAt: desc}], take: $take, skip: $skip) {
       title
       id
       slug
       headerImage {
         id
       }
+      headerAltText
     }
   }
 `;
 
 const GET_AUTHOR = gql`
-  query GET_AUTHOR_POSTS($where: UserWhereUniqueInput!) {
+  query GET_AUTHOR($where: UserWhereUniqueInput!) {
     user(where: $where) {
       name
     }
@@ -62,7 +108,7 @@ const GET_AUTHOR_POSTS = gql`
     user(where: $where) {
       id
       name
-      posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ createdAt: desc }], take: $take, skip: $skip) {
+      posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ publishedAt: desc }], take: $take, skip: $skip) {
         title
         slug
         tags {
@@ -110,7 +156,7 @@ const GET_TAG_POSTS = gql`
     id
     slug
     name
-    posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ createdAt: desc }], take: $take, skip: $skip) {
+    posts(where: { status: { equals: "PUBLISHED"} }, orderBy: [{ publishedAt: desc }], take: $take, skip: $skip) {
       tags {
         id
         slug
@@ -125,6 +171,7 @@ const GET_TAG_POSTS = gql`
       headerImage {
         id
       }
+      headerAltText
       blurb
       id
     }
@@ -177,6 +224,8 @@ const GET_PAGE_BY_NAME = gql`
 
 export {
   GET_ALL_POSTS,
+  GET_POSTS_WHERE,
+  GET_FEATURED_POSTS,
   GET_ALL_PUBLISHED_SLUGS_WITH_MODIFIED,
   GET_RECENT_POST_TITLES,
   GET_AUTHOR,

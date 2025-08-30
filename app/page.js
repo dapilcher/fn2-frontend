@@ -1,5 +1,5 @@
 import { getClient } from "../apollo/client";
-import { GET_ALL_POSTS } from "../apollo/queries";
+import { GET_ALL_POSTS, GET_FEATURED_POSTS } from "../apollo/queries";
 import BodyContainer from "../components/BodyContainer";
 import PostCardGrid from "../components/PostCardGrid";
 import Sidebar from "../components/Sidebar";
@@ -12,18 +12,18 @@ export const metadata = defaultMetadata;
 const Home = async () => {
   const { data, loading, error } = await getClient().query({
     query: GET_ALL_POSTS,
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 },
-      },
-    },
   });
+
+  const { data: featuredPosts } = await getClient().query({
+    query: GET_FEATURED_POSTS
+  })
+
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error loading page.</p>
   
   return (
     <>
-        {data.posts?.length > 0 && <Carousel posts={data.posts.slice(0,3)} />}
+        {featuredPosts.posts?.length > 0 && <Carousel posts={featuredPosts.posts} />}
       {/* <BodyContainer> */}
           <div className="flex flex-col gap-12 xl:grid xl:grid-cols-12 flex-1">
             <section className="flex flex-col items-center justify-start col-span-9">
