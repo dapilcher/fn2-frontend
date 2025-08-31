@@ -77,6 +77,11 @@ const SinglePost = async ({ params }) => {
           }
         </article>
         <aside className="col-span-3">
+        {postsData.post.relatedPosts && 
+        <>
+          <PostListSmall posts={postsData.post.relatedPosts} sectionTitle="Related Posts" />
+        </>
+        }
           {recentsLoading ? (
             <p>Loading...</p>
           ) : (

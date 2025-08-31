@@ -7,7 +7,7 @@ const PostListSmall = ({posts = [], sectionTitle = "Recent posts"}) => {
       <h1 className="font-display text-lg xl:text-base flex items-center text-red-500 hover:text-red-500 uppercase">
         {sectionTitle}
       </h1>
-    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xl:flex xl:flex-col">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 mb-12 lg:grid-cols-4 gap-4 xl:flex xl:flex-col">
       {posts.map(post => (
         <li key={`post-${post.id}`} className="flex flex-col w-full">
           <Link href={`/p/${post.slug}`} className="text-md mb-2 font-body text-primary-600 hover:text-primary-400 hover:opacity-90 transition-all">

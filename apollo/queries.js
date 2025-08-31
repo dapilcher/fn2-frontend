@@ -234,6 +234,16 @@ const GET_POST_BY_ID = gql`
       }
       headerImageAttribution
       headerImageAttributionUrl
+      relatedPosts(take: 4) {
+        title
+        id
+        slug
+        headerImage
+        {
+          id
+        }
+        headerAltText
+      }
     }
   }
 `;
