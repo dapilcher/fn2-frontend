@@ -20,6 +20,31 @@ const GET_ALL_POSTS = gql`
         slug
         id
       }
+      popularScore
+    }
+  }
+`;
+
+const GET_POPULAR_POSTS = gql`
+  query GET_POPULAR_POSTS($take: Int) {
+    posts: getPopularPosts(take: $take) {
+      author {
+        id
+        name
+      }
+      title
+      slug
+      id
+      headerImage {
+        id
+      }
+      headerAltText
+      blurb
+      tags {
+        name
+        slug
+        id
+      }
     }
   }
 `;
@@ -225,6 +250,7 @@ const GET_PAGE_BY_NAME = gql`
 
 export {
   GET_ALL_POSTS,
+  GET_POPULAR_POSTS,
   GET_POSTS_WHERE,
   GET_FEATURED_POSTS,
   GET_ALL_PUBLISHED_SLUGS_WITH_MODIFIED,

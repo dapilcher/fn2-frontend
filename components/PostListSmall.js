@@ -13,8 +13,8 @@ const PostListSmall = ({posts = [], sectionTitle = "Recent posts"}) => {
           <Link href={`/p/${post.slug}`} className="text-md mb-2 font-body text-primary-600 hover:text-primary-400 hover:opacity-90 transition-all">
             <div className="relative">
               <CloudImage
-                imageId={post.headerImage.id}
-                alt={post.title}
+                imageId={post.headerImage?.id}
+                alt={post.headerAltText || post.title}
                 width="710"
                 height="355"
                 crop="auto"

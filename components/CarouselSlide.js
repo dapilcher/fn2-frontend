@@ -23,9 +23,9 @@ const Slide = ({ sliding, post }) => (
       </Link>
       <div className="slide-text-box text-white absolute m-2 left-0 bottom-0 bg-black bg-opacity-50 p-2 md:m-12 md:p-4">
         <Link href={`/p/${post.slug}`}>
-					<h1 className="font-display text-lg md:text-2xl">
+					<h2 className="font-display text-lg md:text-2xl">
             {post.title}
-						</h1>
+						</h2>
         </Link>
 				<div className="font-body text-md font-light my-4 hidden md:block">{post.blurb || ""}</div>
         <div className="hidden md:block">
