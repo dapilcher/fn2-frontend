@@ -97,6 +97,17 @@ const GET_FEATURED_POSTS = gql`
   }
 `;
 
+const GET_HEADERIMAGE_BY_SLUG = gql`
+  query GET_HEADERIMAGE_BY_SLUG($slug: String!) {
+    post(where: { slug: { equals: $slug} }) {
+      headerImage {
+        id
+      }
+      headerAltText
+    }
+  }
+`;
+
 const GET_ALL_PUBLISHED_SLUGS_WITH_MODIFIED = gql`
   query GET_ALL_PUBLISHED_SLUGS_WITH_MODIFIED {
     posts(where: { status: { equals: "PUBLISHED"} }) {
@@ -263,6 +274,7 @@ export {
   GET_POPULAR_POSTS,
   GET_POSTS_WHERE,
   GET_FEATURED_POSTS,
+  GET_HEADERIMAGE_BY_SLUG,
   GET_ALL_PUBLISHED_SLUGS_WITH_MODIFIED,
   GET_RECENT_POST_TITLES,
   GET_AUTHOR,

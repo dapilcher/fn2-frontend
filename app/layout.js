@@ -27,9 +27,12 @@ export const bodyFont = Manrope({
 
 // Metadata
 export const metadata = {
-  title: "Flightless Nerd"
+  title: "Flightless Nerd",
+  metadataBase: new URL('https://flightlessnerd.com'),
+  openGraph: {
+    images: '/opengraph-image.png',
+  },
 }
-
 
 const Layout = ({ children }) => {
   if (process.env.NODE_ENV !== "production") {
