@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/server';
-import { getClient } from '../../apollo/client';
-import { GET_HEADERIMAGE_BY_SLUG } from '../../apollo/queries';
+import { getClient } from '../../../apollo/client';
+import { GET_HEADERIMAGE_BY_SLUG } from '../../../apollo/queries';
 import NextImage from 'next/image';
 
 // Image metadata
