@@ -11,7 +11,11 @@ const GET_ALL_POSTS = gql`
       slug
       id
       headerImage {
-        id
+        image {
+          url
+          height
+          width
+        }
       }
       headerAltText
       blurb
@@ -36,7 +40,11 @@ const GET_POPULAR_POSTS = gql`
       slug
       id
       headerImage {
-        id
+        image {
+          url
+          height
+          width
+        }
       }
       headerAltText
       blurb
@@ -60,7 +68,11 @@ const GET_POSTS_WHERE = gql`
       slug
       id
       headerImage {
-        id
+        image {
+          url
+          height
+          width
+        }
       }
       headerAltText
       blurb
@@ -84,7 +96,11 @@ const GET_FEATURED_POSTS = gql`
       slug
       id
       headerImage {
-        id
+        image {
+          url
+          height
+          width
+        }
       }
       headerAltText
       blurb
@@ -101,7 +117,11 @@ const GET_HEADERIMAGE_BY_SLUG = gql`
   query GET_HEADERIMAGE_BY_SLUG($slug: String!) {
     post(where: { slug: { equals: $slug} }) {
       headerImage {
-        id
+        image {
+          url
+          height
+          width
+        }
       }
       headerAltText
     }
@@ -124,7 +144,11 @@ const GET_RECENT_POST_TITLES = gql`
       id
       slug
       headerImage {
-        id
+        image {
+          url
+          height
+          width
+        }
       }
       headerAltText
     }
@@ -205,7 +229,11 @@ const GET_TAG_POSTS = gql`
       title
       slug
       headerImage {
-        id
+        image {
+          url
+          height
+          width
+        }
       }
       headerAltText
       blurb
@@ -237,24 +265,23 @@ const GET_POST_BY_ID = gql`
       }
       status
       content {
-        document
+        document(hydrateRelationships: true)
       }
       headerImage {
-        id
-        publicUrl
+        image {
+          url
+          height
+          width
+        }
       }
       headerImageAttribution
       headerImageAttributionUrl
-      relatedPosts(take: 4) {
-        title
-        id
-        slug
-        headerImage
-        {
-          id
-        }
-        headerAltText
-      }
+      # relatedPosts(take: 4) {
+      #   title
+      #   id
+      #   slug
+      #   headerAltText
+      # }
     }
   }
 `;
