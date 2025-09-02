@@ -19,16 +19,11 @@ export default async function Image({ params }) {
     (
       // ImageResponse JSX element
       <>
-        {data.post?.headerImage?.id ? <CloudImage
-          imageId={data.post.headerImage.id}
+        {data.post?.headerImage?.image ? <NextImage
+          src={data.post.headerImage.image.url}
           alt={data.post.headerAltText || "Flightless Nerd"}
-          width="1920"
-          height="1080"
-          crop="auto"
-          // gravity="faces"
-          effects={[
-            { aspectRatio: "16:9" }
-          ]}
+          width={data.post.headerImage.image.width || "1920"}
+          height={data.post.headerImage.image.height || "1080"}
         /> : <>
           <NextImage src="/opengraph-image.png" alt="Flightless Nerd" />
         </>}

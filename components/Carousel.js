@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Slide from "./CarouselSlide";
 
 function Carousel({ posts }) {
@@ -50,23 +50,28 @@ function Carousel({ posts }) {
           {slides[slideIndex]}
         </>
 
-        <a className="cursor-pointer absolute top-1/2 -mt-6 p-4 bg-white bg-opacity-40 font-bold text-lg md:text-2xl transition duration-300 ease hover:bg-opacity-80 rounded-r"
-          onClick={() => shiftSlide(-1)}>
-          &#10094;
-        </a>
-        <a className="cursor-pointer absolute top-1/2 -mt-6 p-4 bg-white bg-opacity-40 font-bold text-lg md:text-2xl transition duration-300 ease hover:bg-opacity-80 rounded-l right-0"
-          onClick={() => shiftSlide(1)}>
-          &#10095;
-        </a>
-        <div className="dots absolute w-full h-auto top-0 left-0 m-2 bottom-auto md:bottom-0 md:top-auto md:text-center">
-          {slides.map((_, i) => (
-            <a
-              className={`dot cursor-pointer h-2 w-2 md:h-4 md:w-4  mx-2 bg-white bg-opacity-40 rounded-2xl inline-block transition duration-300 ease hover:bg-opacity-80 ${i === slideIndex ? "dot-active bg-opacity-80" : ""}`}
-              onClick={() => setSlide(i)}
-              key={`dot-${i}`}
-            />
-          ))}
-        </div>
+        {slides.length > 1 &&
+          <>
+
+            <a className="cursor-pointer absolute top-1/2 -mt-6 p-4 bg-white bg-opacity-40 font-bold text-lg md:text-2xl transition duration-300 ease hover:bg-opacity-80 rounded-r"
+              onClick={() => shiftSlide(-1)}>
+              &#10094;
+            </a>
+            <a className="cursor-pointer absolute top-1/2 -mt-6 p-4 bg-white bg-opacity-40 font-bold text-lg md:text-2xl transition duration-300 ease hover:bg-opacity-80 rounded-l right-0"
+              onClick={() => shiftSlide(1)}>
+              &#10095;
+            </a>
+            <div className="dots absolute w-full h-auto top-0 left-0 m-2 bottom-auto md:bottom-0 md:top-auto md:text-center">
+              {slides.map((_, i) => (
+                <a
+                  className={`dot cursor-pointer h-2 w-2 md:h-4 md:w-4  mx-2 bg-white bg-opacity-40 rounded-2xl inline-block transition duration-300 ease hover:bg-opacity-80 ${i === slideIndex ? "dot-active bg-opacity-80" : ""}`}
+                  onClick={() => setSlide(i)}
+                  key={`dot-${i}`}
+                />
+              ))}
+            </div>
+          </>
+        }
       </div>
     </>
   );

@@ -34,8 +34,6 @@ const SinglePost = async ({ params }) => {
     variables: { take: 4 },
   });
 
-  // console.log(postsData.post.content.document[8])
-
   if (postsLoading) return <p>Loading...</p>
 
   if (!postsData.post) return <p>Post not found</p>
@@ -45,8 +43,8 @@ const SinglePost = async ({ params }) => {
       <PageTracker views={postsData.post.views} id={postsData.post.id} avgTimeOnPage={postsData.post.avgTimeOnPage} uniqueVisitors={postsData.post.uniqueVisitors} />
       <div className="xl:grid xl:grid-cols-12 flex flex-col width-full">
         <div className="col-span-9">
-          {postsData.post.headerImage?.id && <HeaderImage
-            imageId={postsData.post.headerImage.id}
+          {postsData.post.headerImage?.image && <HeaderImage
+            image={postsData.post.headerImage.image}
             className="max-w-full"
             attribution={postsData.post.headerImageAttribution}
             attributionUrl={postsData.post.headerImageAttributionUrl}

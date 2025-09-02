@@ -1,28 +1,24 @@
 import moment from 'moment';
 import Link from 'next/link';
-// import { AdvancedImage } from '@cloudinary/react';
-// import cld from '../lib/cloudinary';
-import CloudImage from './CloudImage';
+import Image from 'next/image';
 import Button from './Button';
-import TagLink from './TagLink';
 import TagList from './TagList';
 
-// import { CldImage } from "next-cloudinary";
 
 const PostCard = ({ post }) => {
   return (
     <li key={`post-${post.id}`} className="flex flex-col items-start border-b border-grey-200 pb-4 mb-4 md:border-0 md:pb-0 md:mb-0 md:rounded-b-xl">
-      {/* <AdvancedImage cldImg={image} /> */}
-      {post.headerImage?.id && <CloudImage
-        imageId={post.headerImage.id}
+      {post.headerImage?.image.url && <Image
+        src={post.headerImage.image.url}
         alt={post.title}
-        width="1000"
-        height="500"
-        crop="auto"
-        gravity="faces"
+        width={post.headerImage.image.width || "1000"}
+        height={post.headerImage.image.height || "500"}
+        loading='eager'
         sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
+      // placeholder="blur"
+      // blurDataURL=""
       />}
       <div className="py-4">
         <div className="">

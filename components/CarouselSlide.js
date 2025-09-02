@@ -1,25 +1,23 @@
 import Link from "next/link";
+import Image from 'next/image';
 import TagList from "./TagList";
-import CloudImage from "./CloudImage";
 
 const Slide = ({ sliding, post }) => (
   <>
     <div className={`carousel-slide ${sliding ? "sliding" : ""}`}>
       <Link href={`/p/${post.slug}`}>
-          {post.headerImage && post.headerImage.id ? (
-            <CloudImage
-              imageId={post.headerImage.id}
-              width="1920"
-              height="1080"
-              crop="auto"
-							className="w-full"
-              effects={[
-                { aspectRatio: "16:9" }
-              ]}
-            />
-          ) : (
-            ""
-          )}
+      {post.headerImage?.image.url && <Image
+        src={post.headerImage.image.url}
+        alt={post.title}
+        width={post.headerImage.image.width || "1920"}
+        height={post.headerImage.image.height || "1080"}
+        loading='eager'
+        sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
+      // placeholder="blur"
+      // blurDataURL=""
+      />}
       </Link>
       <div className="slide-text-box text-white absolute m-2 left-0 bottom-0 bg-black bg-opacity-50 p-2 md:m-12 md:p-4">
         <Link href={`/p/${post.slug}`}>
