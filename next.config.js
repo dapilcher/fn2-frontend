@@ -11,6 +11,11 @@ module.exports = {
         hostname: "localhost",
         port: "3000",
         pathname: "/image/**"
+      },
+      {
+        protocol: "https",
+        hostname: "admin.flightlessnerd.com",
+        pathname: "/image/**"
       }
     ]
   }
