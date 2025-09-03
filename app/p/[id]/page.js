@@ -8,6 +8,7 @@ import HeaderImage from "../../../components/HeaderImage";
 import TagList from "../../../components/TagList";
 import PostListSmall from "../../../components/PostListSmall";
 import PageTracker from "../../../components/PageTracker";
+import { postMetadata } from "../../../lib/metadata";
 
 
 // MetapostsData
@@ -17,10 +18,9 @@ export async function generateMetadata({ params }, parent) {
     variables: { where: { slug: params.id } }, // update to use slug
   });
 
-  return {
-    title: `${data.post?.title} | Flightless Nerd` || "Flightless Nerd",
-    description: data.post?.blurb || 'A blog about tech, programming, and other nerdy things.',
-  }
+  const metadata = postMetadata(data.post);
+
+  return metadata;
 }
 
 const SinglePost = async ({ params }) => {
@@ -28,6 +28,8 @@ const SinglePost = async ({ params }) => {
     query: GET_POST_BY_ID,
     variables: { where: { slug: params.id } },
   });
+
+  console.log("Header", postsData.post.headerImage)
 
   const { data: recentsData, loading: recentsLoading } = await getClient().query({
     query: GET_RECENT_POST_TITLES,

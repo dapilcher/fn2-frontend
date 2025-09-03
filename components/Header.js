@@ -36,9 +36,9 @@ const Header = () => {
             <NavItem href="mailto:contact@flightlessnerd.com">Contact</NavItem>
           </Nav>
           <Nav className="flex flex-row mt-2 md:mt-0">
-            <NavItem href="https://x.com/flightlessnews"><img className="fill-grey-700 hover:fill-red-500 h-5 w-5 md:h-4 md:w-4" src="/x.svg"  /></NavItem>
-            {/* <NavItem href="https://discord.gg/v6rzyYCQvt"><img className="fill-grey-700 hover:fill-red-500 h-5 w-5 md:h-4 md:w-4" src="/discord.svg"  /></NavItem> */}
-            <NavItem href="https://twitch.tv/flightless_nerd"><img className="fill-grey-700 hover:fill-red-500 h-5 w-5 md:h-4 md:w-4" src="/twitch.svg"  /></NavItem>
+            <NavItem href="https://x.com/flightlessnews"><Image className="fill-grey-700 hover:fill-red-500 h-5 w-5 md:h-4 md:w-4" width="16" height="16" src="/x.svg"  /></NavItem>
+            {/* <NavItem href="https://discord.gg/v6rzyYCQvt"><Image className="fill-grey-700 hover:fill-red-500 h-5 w-5 md:h-4 md:w-4" width="16" height="16" src="/discord.svg"  /></NavItem> */}
+            <NavItem href="https://twitch.tv/flightless_nerd"><Image className="fill-grey-700 hover:fill-red-500 h-5 w-5 md:h-4 md:w-4" width="16" height="16" src="/twitch.svg"  /></NavItem>
           </Nav>
         </div>
       </nav>

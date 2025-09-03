@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import BodyContainer from '../components/BodyContainer';
 import Sidebar from '../components/Sidebar';
 import ReportWebVitals from '../components/ReportWebVitals';
+import { viewportMetadata, siteMetadata } from '../lib/metadata';
 
 export const displayFont = Red_Hat_Display({
   subsets: ['latin'],
@@ -26,13 +27,8 @@ export const bodyFont = Manrope({
 
 
 // Metadata
-export const metadata = {
-  title: "Flightless Nerd",
-  metadataBase: new URL('https://flightlessnerd.com'),
-  openGraph: {
-    images: '/opengraph-image.png',
-  },
-}
+export const viewport = viewportMetadata;
+export const metadata = siteMetadata;
 
 const Layout = ({ children }) => {
   if (process.env.NODE_ENV !== "production") {
