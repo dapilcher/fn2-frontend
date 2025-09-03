@@ -5,9 +5,6 @@ import PostCardGrid from "../components/PostCardGrid";
 import Sidebar from "../components/Sidebar";
 import Carousel from "../components/Carousel";
 import PrettyJSON from "../components/PrettyJSON";
-import defaultMetadata from "../lib/metadata";
-
-export const metadata = defaultMetadata;
 
 const Home = async () => {
   // get latest posts
