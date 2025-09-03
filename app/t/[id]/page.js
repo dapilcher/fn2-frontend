@@ -3,7 +3,6 @@ import { GET_TAG, GET_TAG_POSTS } from '../../../apollo/queries';
 import BodyContainer from '../../../components/BodyContainer';
 import PostCardGrid from '../../../components/PostCardGrid';
 import PrettyJSON from '../../../components/PrettyJSON';
-import defaultMetadata from '../../../lib/metadata';
 
 // MetapostsData
 export async function generateMetadata({ params }, parent) {
@@ -13,8 +12,7 @@ export async function generateMetadata({ params }, parent) {
   });
 
   return {
-    title: `${data.tag?.name} | Flightless Nerd` || defaultMetadata.title,
-    description: defaultMetadata.description,
+    title: `${data.tag?.name}` || "Flightless Nerd",
   }
 }
 
