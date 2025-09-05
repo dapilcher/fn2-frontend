@@ -3,6 +3,7 @@ import slugify from "slugify";
 import DropCap from "./DropCap";
 import DocumentImage from "./DocumentImage";
 import Quote from "./Quote";
+import NumberedHeading from "./NumberedHeading";
 
 const defaultElementRenderers = {
   inline: {
@@ -71,6 +72,9 @@ const customComponentRenderers = {
   ),
   quote: props => (
     <Quote {...props} />
+  ),
+  numberedHeading: props => (
+    <NumberedHeading {...props} />
   )
 }
 
