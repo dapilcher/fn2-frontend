@@ -10,6 +10,8 @@ const GET_ALL_POSTS = gql`
       title
       slug
       id
+      publishedAt
+      updatedAt
       headerImage {
         image {
           url
