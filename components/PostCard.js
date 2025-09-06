@@ -17,8 +17,8 @@ const PostCard = ({ post }) => {
         sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
-      // placeholder="blur"
-      // blurDataURL=""
+        placeholder="blur"
+        blurDataURL={post.headerImage.base64URL}
       />}
       <div className="py-4">
         <div className="">
