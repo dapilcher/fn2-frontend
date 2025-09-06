@@ -15,8 +15,8 @@ const Slide = ({ sliding, post }) => (
         sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
-      // placeholder="blur"
-      // blurDataURL=""
+        placeholder="blur"
+        blurDataURL={post.headerImage.base64URL}
       />}
       </Link>
       <div className="slide-text-box text-white absolute m-2 left-0 bottom-0 bg-black bg-opacity-50 p-2 md:m-12 md:p-4">

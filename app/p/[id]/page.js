@@ -29,8 +29,6 @@ const SinglePost = async ({ params }) => {
     variables: { where: { slug: params.id } },
   });
 
-  console.log("Header", postsData.post.headerImage)
-
   const { data: recentsData, loading: recentsLoading } = await getClient().query({
     query: GET_RECENT_POST_TITLES,
     variables: { take: 4 },
@@ -46,7 +44,7 @@ const SinglePost = async ({ params }) => {
       <div className="xl:grid xl:grid-cols-12 flex flex-col width-full">
         <div className="col-span-9">
           {postsData.post.headerImage?.image && <HeaderImage
-            image={postsData.post.headerImage.image}
+            image={postsData.post.headerImage}
             className="max-w-full"
             attribution={postsData.post.headerImageAttribution}
             attributionUrl={postsData.post.headerImageAttributionUrl}
