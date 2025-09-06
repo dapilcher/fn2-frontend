@@ -7,8 +7,14 @@ const DocumentImage = (props) => {
       <Image
         src={props.image.data?.image.url}
         alt={props.image.altText || props.image.data?.image.altText || ""}
-        width="1920"
-        height="1080"
+        width={props.image.data?.image.width || "1000"}
+        height={props.image.data?.image.height || "500"}
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
+        // placeholder="blur"
+        // blurDataURL={props.image.data?.base64URL}
       />
         <div className="font-body text-md mt-2 text-grey-300 text-light italic">
           {props.caption}

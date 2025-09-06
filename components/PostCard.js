@@ -13,7 +13,7 @@ const PostCard = ({ post }) => {
         alt={post.title}
         width={post.headerImage.image.width || "1000"}
         height={post.headerImage.image.height || "500"}
-        loading='eager'
+        loading="lazy"
         sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
