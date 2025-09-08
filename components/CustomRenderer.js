@@ -8,6 +8,9 @@ import NumberedHeading from "./NumberedHeading";
 
 const defaultElementRenderers = {
   inline: {
+    link({href, children}) {
+      return <Link href={href} className="text-primary-600 hover:text-primary-400">{children}</Link>;
+    },
     relationship({ relationship, data }) {
       if (relationship === 'mention') {
         if (data === null || data.data === undefined) {
