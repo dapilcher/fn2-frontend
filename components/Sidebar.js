@@ -6,6 +6,7 @@ import { GET_RECENT_POST_TITLES } from '../apollo/queries';
 import Button from "./Button";
 import CloudImage from './CloudImage';
 import PostListSmall from './PostListSmall';
+import Austrich_circle_cropped from '../public/Austrich_circle_cropped.png';
 
 const Sidebar = async () => {
   const { data, loading } = await getClient().query({
@@ -20,7 +21,14 @@ const Sidebar = async () => {
       <div className="w-full bg-grey-50 p-4 flex flex-col order-2 xl:order-1">
         <h3 className="w-full font-display uppercase font-medium text-lg md:text-sm">Welcome to Flightless Nerd</h3>
         <div className="w-full flex justify-start xl:justify-center">
-          <Image className="w-32 my-4" style={{height: "auto", width: "auto"}} height="128" width="128" src="/Austrich_circle_cropped.png" />
+          <Image
+            className="w-32 my-4"
+            style={{height: "auto", width: "auto"}}
+            height="128"
+            width="128"
+            src={Austrich_circle_cropped}
+            // placeholder="blur"
+            />
         </div>
         <div className="text-sm font-body font-light">
         <p className="mb-4">Flightless Nerd is a community of like-minded folks who enjoy all things "nerdy."</p>
