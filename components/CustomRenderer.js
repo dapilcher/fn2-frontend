@@ -1,5 +1,6 @@
 import { DocumentRenderer, DocumentRendererProps } from "@keystone-6/document-renderer";
 import slugify from "slugify";
+import Link from "next/link";
 import DropCap from "./DropCap";
 import DocumentImage from "./DocumentImage";
 import Quote from "./Quote";
@@ -19,7 +20,7 @@ const defaultElementRenderers = {
         if (data === null || data.data === undefined) {
           return <span>[unknown post]</span>
         } else {
-          return <Link href={`/p/${data.data.id}`}>{data.data.title}</Link>;
+          return <Link href={`/p/${data.data.slug}`} className="text-primary-600 italic hover:text-primary-400">{data.data.title}</Link>;
         }
       }
       return null;
