@@ -4,16 +4,16 @@ const HeaderImage = ({image, attribution = null, attributionUrl = null, ...rest}
 
   return (
     <div className="p-0">
-            {image && <Image
-              src={image.url}
-              width={image.width || "1000"}
-              height={image.height || "500"}
+            {image.image && <Image
+              src={image.image.url}
+              width={image.image.width || "1000"}
+              height={image.image.height || "500"}
               loading='eager'
               sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
                   33vw"
-            // placeholder="blur"
-            // blurDataURL=""
+              placeholder="blur"
+              blurDataURL={image.base64URL}
             {...rest}
             />}
       {attribution && (

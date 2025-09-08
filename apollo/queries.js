@@ -13,6 +13,7 @@ const GET_ALL_POSTS = gql`
       publishedAt
       updatedAt
       headerImage {
+        base64URL
         image {
           url
           height
@@ -42,6 +43,7 @@ const GET_POPULAR_POSTS = gql`
       slug
       id
       headerImage {
+        base64URL
         image {
           url
           height
@@ -70,6 +72,7 @@ const GET_POSTS_WHERE = gql`
       slug
       id
       headerImage {
+        base64URL
         image {
           url
           height
@@ -98,6 +101,7 @@ const GET_FEATURED_POSTS = gql`
       slug
       id
       headerImage {
+        base64URL
         image {
           url
           height
@@ -119,6 +123,7 @@ const GET_HEADERIMAGE_BY_SLUG = gql`
   query GET_HEADERIMAGE_BY_SLUG($slug: String!) {
     post(where: { slug: { equals: $slug} }) {
       headerImage {
+        base64URL
         image {
           url
           height
@@ -146,6 +151,7 @@ const GET_RECENT_POST_TITLES = gql`
       id
       slug
       headerImage {
+        base64URL
         image {
           url
           height
@@ -184,7 +190,12 @@ const GET_AUTHOR_POSTS = gql`
         }
         id
         headerImage {
-          id
+          base64URL
+          image {
+            url
+            height
+            width
+          }
         }
         blurb
         tags {
@@ -231,6 +242,7 @@ const GET_TAG_POSTS = gql`
       title
       slug
       headerImage {
+        base64URL
         image {
           url
           height
@@ -270,6 +282,7 @@ const GET_POST_BY_ID = gql`
         document(hydrateRelationships: true)
       }
       headerImage {
+        base64URL
         image {
           url
           height
