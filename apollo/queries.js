@@ -301,6 +301,31 @@ const GET_POST_BY_ID = gql`
   }
 `;
 
+const GET_POST_META_BY_ID = gql`
+  query GET_POST_META_BY_ID($where: PostWhereUniqueInput!) {
+    post(where: $where) {
+      id
+      slug
+      blurb
+      keywords
+      author {
+        id
+        name
+      }
+      publishedAt
+      updatedAt
+      title
+      headerImage {
+        image {
+          url
+          height
+          width
+        }
+      }
+    }
+  }
+`;
+
 const GET_PAGE_BY_NAME = gql`
   query GET_PAGE_BY_NAME($where: PageWhereUniqueInput!) {
     page(where: $where) {
@@ -322,6 +347,7 @@ export {
   GET_AUTHOR,
   GET_AUTHOR_POSTS,
   GET_POST_BY_ID,
+  GET_POST_META_BY_ID,
   GET_TAG,
   GET_ALL_TAGS,
   GET_TAG_POSTS,

@@ -1,7 +1,7 @@
 import moment from "moment";
 import Link from "next/link";
 import { getClient } from "../../../apollo/client";
-import { GET_POST_BY_ID, GET_RECENT_POST_TITLES } from "../../../apollo/queries";
+import { GET_POST_BY_ID, GET_POST_META_BY_ID, GET_RECENT_POST_TITLES } from "../../../apollo/queries";
 import CustomRenderer from "../../../components/CustomRenderer";
 import PrettyJSON from "../../../components/PrettyJSON";
 import HeaderImage from "../../../components/HeaderImage";
@@ -14,7 +14,7 @@ import { postMetadata } from "../../../lib/metadata";
 // MetapostsData
 export async function generateMetadata({ params }, parent) {
   const { data } = await getClient().query({
-    query: GET_POST_BY_ID,
+    query: GET_POST_META_BY_ID,
     variables: { where: { slug: params.id } }, // update to use slug
   });
 
