@@ -8,7 +8,7 @@ const Slide = ({ sliding, post }) => (
       <Link href={`/p/${post.slug}`}>
       {post.headerImage?.image.url && <Image
         src={post.headerImage.image.url}
-        alt={post.title}
+        alt={post.headerImage.altText || post.title}
         width={post.headerImage.image.width || "1920"}
         height={post.headerImage.image.height || "1080"}
         loading='eager'

@@ -5,7 +5,8 @@ import PostCardGrid from '../../../components/PostCardGrid';
 import PrettyJSON from '../../../components/PrettyJSON';
 
 // MetapostsData
-export async function generateMetadata({ params }, parent) {
+export async function generateMetadata(props, parent) {
+  const params = await props.params;
   const { data } = await getClient().query({
     query: GET_AUTHOR,
     variables: { where: { id: params.id } }, // update to use slug
@@ -16,7 +17,8 @@ export async function generateMetadata({ params }, parent) {
   }
 }
 
-const AuthorPage = async ({params}) => {
+const AuthorPage = async props => {
+  const params = await props.params;
   const {data, loading} = await getClient().query({
     query: GET_AUTHOR_POSTS,
     variables: {

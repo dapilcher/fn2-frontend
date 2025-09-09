@@ -22,6 +22,7 @@ const Sidebar = async () => {
         <h3 className="w-full font-display uppercase font-medium text-lg md:text-sm">Welcome to Flightless Nerd</h3>
         <div className="w-full flex justify-start xl:justify-center">
           <Image
+            alt="Flightless Nerd logo."
             className="w-32 my-4"
             style={{height: "auto", width: "auto"}}
             height="128"

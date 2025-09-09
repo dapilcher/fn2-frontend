@@ -3,6 +3,7 @@ import Image from 'next/image';
 const DocumentImage = (props) => {
   // console.log("DocumentImage props", props);
   return (
+    // </div>
     <div className="mx-0 md:mx-10 my-10">
       <Image
         src={props.image.data?.image.url}
@@ -16,11 +17,10 @@ const DocumentImage = (props) => {
         // placeholder="blur"
         // blurDataURL={props.image.data?.base64URL}
       />
-        <div className="font-body text-md mt-2 text-grey-300 text-light italic">
-          {props.caption}
-        </div>
+      <div className="font-body text-md mt-2 text-grey-300 text-light italic">
+        {props.caption}
       </div>
-    // </div>
+    </div>
   );
 };
 
