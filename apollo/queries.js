@@ -275,6 +275,7 @@ const GET_POST_BY_ID = gql`
       title
       tags {
         name
+        slug
         id
       }
       status
