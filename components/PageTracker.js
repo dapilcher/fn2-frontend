@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 import { INCREMENT_POST_VIEWS, INCREMENT_UNIQUE_VISITORS, UPDATE_AVG_TIME_ON_PAGE } from '../apollo/mutations';
 
 const PageTracker = ({ views, id, avgTimeOnPage, uniqueVisitors }) => {

@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GET_RECENT_POST_TITLES } from '../apollo/queries';
 import Button from "./Button";
-import CloudImage from './CloudImage';
 import PostListSmall from './PostListSmall';
 import Austrich_circle_cropped from '../public/Austrich_circle_cropped.png';
 
