@@ -46,7 +46,7 @@ const defaultElementRenderers = {
             </div>
         );
         case 3:
-          return <h3 className="font-display text-lg md:text-xl font-medium mb-3" style={{ textAlign }}>{children}</h3>;
+          return <h3 className="font-display text-lg md:text-xl font-medium mb-8 italic text-grey-500" style={{ textAlign }}>{children}</h3>;
         case 4:
           return <h4 className="font-display text-md md:text-lg mb-3" style={{ textAlign }}>{children}</h4>;
         case 5:
