@@ -3,7 +3,9 @@ import Image from 'next/image';
 const DocumentImage = (props) => {
   // console.log("DocumentImage props", props);
   return (
+    // </div>
     <div className="mx-0 md:mx-10 my-10">
+    {props.image?.data?.image ?
       <Image
         src={props.image.data?.image.url}
         alt={props.image.altText || props.image.data?.image.altText || ""}
@@ -15,12 +17,12 @@ const DocumentImage = (props) => {
             33vw"
         // placeholder="blur"
         // blurDataURL={props.image.data?.base64URL}
-      />
-        <div className="font-body text-md mt-2 text-grey-300 text-light italic">
-          {props.caption}
-        </div>
-      </div>
-    // </div>
+      /> : <div>Couldn't find image</div>}
+      {props.caption &&
+      <div className="font-body text-md mt-2 text-grey-300 text-light italic">
+        {props.caption}
+      </div>}
+    </div>
   );
 };
 

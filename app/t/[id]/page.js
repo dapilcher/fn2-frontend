@@ -5,7 +5,8 @@ import PostCardGrid from '../../../components/PostCardGrid';
 import PrettyJSON from '../../../components/PrettyJSON';
 
 // MetapostsData
-export async function generateMetadata({ params }, parent) {
+export async function generateMetadata(props, parent) {
+  const params = await props.params;
   const { data } = await getClient().query({
     query: GET_TAG,
     variables: { tagWhere: { slug: params.id } }, // update to use slug
@@ -16,7 +17,8 @@ export async function generateMetadata({ params }, parent) {
   }
 }
 
-const TagPage = async ({ params }) => {
+const TagPage = async props => {
+  const params = await props.params;
   const { data, loading } = await getClient().query({
     query: GET_TAG_POSTS,
     variables: {

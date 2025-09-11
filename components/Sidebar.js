@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GET_RECENT_POST_TITLES } from '../apollo/queries';
 import Button from "./Button";
-import CloudImage from './CloudImage';
 import PostListSmall from './PostListSmall';
 import Austrich_circle_cropped from '../public/Austrich_circle_cropped.png';
 
@@ -22,6 +21,7 @@ const Sidebar = async () => {
         <h3 className="w-full font-display uppercase font-medium text-lg md:text-sm">Welcome to Flightless Nerd</h3>
         <div className="w-full flex justify-start xl:justify-center">
           <Image
+            alt="Flightless Nerd logo."
             className="w-32 my-4"
             style={{height: "auto", width: "auto"}}
             height="128"

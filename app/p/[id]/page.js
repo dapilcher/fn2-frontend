@@ -12,7 +12,8 @@ import { postMetadata } from "../../../lib/metadata";
 
 
 // MetapostsData
-export async function generateMetadata({ params }, parent) {
+export async function generateMetadata(props, parent) {
+  const params = await props.params;
   const { data } = await getClient().query({
     query: GET_POST_META_BY_ID,
     variables: { where: { slug: params.id } }, // update to use slug
@@ -23,7 +24,8 @@ export async function generateMetadata({ params }, parent) {
   return metadata;
 }
 
-const SinglePost = async ({ params }) => {
+const SinglePost = async props => {
+  const params = await props.params;
   const { data: postsData, loading: postsLoading } = await getClient().query({
     query: GET_POST_BY_ID,
     variables: { where: { slug: params.id } },

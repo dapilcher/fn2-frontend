@@ -1,4 +1,4 @@
-import { ImageResponse } from 'next/server';
+import { ImageResponse } from "next/og";
 import { getClient } from '../../../apollo/client';
 import { GET_HEADERIMAGE_BY_SLUG } from '../../../apollo/queries';
 import NextImage from 'next/image';
@@ -18,7 +18,7 @@ export default async function Image({ params }) {
   return new ImageResponse(
     (
       // ImageResponse JSX element
-      <>
+      (<>
         {data.post?.headerImage?.image ? <NextImage
           src={data.post.headerImage.image.url}
           alt={data.post.headerAltText || "Flightless Nerd"}
@@ -27,7 +27,7 @@ export default async function Image({ params }) {
         /> : <>
           <NextImage src="/opengraph-image.png" alt="Flightless Nerd" />
         </>}
-      </>
+      </>)
     )
-  )
+  );
 }

@@ -4,7 +4,7 @@ import BodyContainer from '../../components/BodyContainer';
 import CustomRenderer from '../../components/CustomRenderer';
 
 export const metadata = {
-  title: 'Contact',
+  title: 'Contact'
 }
 
 const ContactPage = async () => {
