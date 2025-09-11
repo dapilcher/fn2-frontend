@@ -1,4 +1,7 @@
 module.exports = {
+  experimental: {
+    webpackMemoryOptimizations: true,
+  },
   images: {
     remotePatterns: [
       {
