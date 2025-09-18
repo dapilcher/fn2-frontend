@@ -33,8 +33,8 @@ const GET_ALL_POSTS = gql`
 `;
 
 const GET_POPULAR_POSTS = gql`
-  query GET_POPULAR_POSTS($take: Int) {
-    posts: getPopularPosts(take: $take) {
+  query GET_POPULAR_POSTS($skip: Int, $take: Int) {
+    posts: getPopularPosts(skip: $skip, take: $take) {
       author {
         id
         name
@@ -57,6 +57,7 @@ const GET_POPULAR_POSTS = gql`
         slug
         id
       }
+      popularScore
     }
   }
 `;
@@ -262,6 +263,7 @@ const GET_POST_BY_ID = gql`
     post(where: $where) {
       id
       views
+      keywords
       uniqueVisitors
       avgTimeOnPage
       slug
@@ -292,12 +294,28 @@ const GET_POST_BY_ID = gql`
       }
       headerImageAttribution
       headerImageAttributionUrl
-      # relatedPosts(take: 4) {
-      #   title
-      #   id
-      #   slug
-      #   headerAltText
-      # }
+    }
+  }
+`;
+
+const GET_RELATED_POSTS_BY_ID = gql`
+  query GET_RELATED_POSTS_BY_ID($where: PostWhereUniqueInput!, $take: Int!, $keywords: String!) {
+    post(where: $where) {
+      relatedPosts(take: $take) {
+        title
+        id
+        slug
+        headerImage {
+          base64URL
+          image {
+            url
+            height
+            width
+          }
+        }
+        headerAltText
+        relatedScore (keywords: $keywords)
+      }
     }
   }
 `;
@@ -348,6 +366,7 @@ export {
   GET_AUTHOR,
   GET_AUTHOR_POSTS,
   GET_POST_BY_ID,
+  GET_RELATED_POSTS_BY_ID,
   GET_POST_META_BY_ID,
   GET_TAG,
   GET_ALL_TAGS,
