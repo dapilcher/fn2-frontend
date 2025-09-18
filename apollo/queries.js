@@ -29,6 +29,7 @@ const GET_ALL_POSTS = gql`
       }
       popularScore
     }
+    postsCount(where: { status: { equals: "PUBLISHED"} })
   }
 `;
 
