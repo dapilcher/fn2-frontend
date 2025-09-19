@@ -40,9 +40,9 @@ const Home = async () => {
             <>
               <h1 className="font-display text-xl w-full mb-4 xl:text-2xl flex items-center text-red-500 hover:text-red-500 uppercase">Popular posts</h1>
               <PostCardGrid posts={[...popularPosts.posts].sort((a, b) => b.popularScore - a.popularScore)} />
-              <div className="full-width text-center my-12">
-                <Link href="/posts">
-                  <Button>View all posts →</Button>
+              <div className="full-width text-center my-8 md:border-t md:pt-8 md:border-grey-200">
+                <Link href="/posts" className="text-primary-600 hover:text-primary-400 border px-4 py-2">
+                  View all posts →
                 </Link>
               </div>
             </>
