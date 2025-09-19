@@ -8,7 +8,7 @@ import Carousel from "../components/Carousel";
 import Button from "../components/Button";
 import PrettyJSON from "../components/PrettyJSON";
 
-const numPosts = 4
+const numPosts = process.env.NODE_ENV === "production" ? 6 : 4;
 
 const Home = async () => {
   // get latest posts

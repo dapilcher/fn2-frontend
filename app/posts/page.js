@@ -4,7 +4,7 @@ import { getClient } from '../../apollo/client';
 import { GET_ALL_POSTS } from '../../apollo/queries';
 import PostList from '../../components/PostList';
 
-const postsPerPage = 8;
+const postsPerPage = process.env.NODE_ENV === "production" ? 8 : 4;
 
 const PostPage = async ({ searchParams }) => {
   const { page=1, limit=postsPerPage } = await searchParams;
