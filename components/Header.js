@@ -32,6 +32,7 @@ const Header = () => {
         <div className={`w-full block flex-grow ${isMenuOpen ? "max-h-screen" : "max-h-0"} overflow-hidden transition-[max-height] duration-500 md:h-auto md:max-h-full md:flex md:justify-between md:items-center md:w-auto`}>
           <Nav className="md:flex md:flex-row">
             <NavItem href="/">Home</NavItem>
+            <NavItem href="/posts">Posts</NavItem>
             <NavItem href="/about">About</NavItem>
             <NavItem href="mailto:contact@flightlessnerd.com">Contact</NavItem>
           </Nav>

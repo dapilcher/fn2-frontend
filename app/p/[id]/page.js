@@ -1,7 +1,12 @@
 import moment from "moment";
 import Link from "next/link";
 import { getClient } from "../../../apollo/client";
-import { GET_POST_BY_ID, GET_POST_META_BY_ID, GET_RECENT_POST_TITLES } from "../../../apollo/queries";
+import {
+  GET_POST_BY_ID,
+  GET_POST_META_BY_ID,
+  GET_RECENT_POST_TITLES,
+  GET_RELATED_POSTS_BY_ID
+} from "../../../apollo/queries";
 import CustomRenderer from "../../../components/CustomRenderer";
 import PrettyJSON from "../../../components/PrettyJSON";
 import HeaderImage from "../../../components/HeaderImage";
@@ -26,10 +31,26 @@ export async function generateMetadata(props, parent) {
 
 const SinglePost = async props => {
   const params = await props.params;
+
   const { data: postsData, loading: postsLoading } = await getClient().query({
     query: GET_POST_BY_ID,
     variables: { where: { slug: params.id } },
   });
+
+  const { data: relatedPostsData, loading: relatedPostsLoading } = await getClient().query({
+    query: GET_RELATED_POSTS_BY_ID,
+    variables: {
+      where: {
+        slug: params.id
+      },
+      take: 4,
+      keywords: postsData.post?.keywords || ""
+    },
+  });
+
+  const relatedPosts = Array.from(relatedPostsData.post?.relatedPosts).sort((a,b) => b.relatedScore - a.relatedScore) || [];
+  
+  console.log({relatedPosts})
 
   const { data: recentsData, loading: recentsLoading } = await getClient().query({
     query: GET_RECENT_POST_TITLES,
@@ -77,9 +98,9 @@ const SinglePost = async props => {
           }
         </article>
         <aside className="col-span-3">
-        {postsData.post.relatedPosts && 
+        {relatedPosts && 
         <>
-          <PostListSmall posts={postsData.post.relatedPosts} sectionTitle="Related Posts" />
+          <PostListSmall posts={relatedPosts} sectionTitle="Related Posts" />
         </>
         }
           {recentsLoading ? (
